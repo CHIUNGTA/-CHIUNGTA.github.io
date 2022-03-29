@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL,PTX,database,Excel," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;#160; &amp;#160; 本章節將會教您如何從PTX服務平台公共運輸整合資訊流通服務平台，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。 PTX資料撈取與儲存PTX API 服務首先我們先進入PTX官方網站，點選紅框處的「線上API說明」。 點選後我們可以看到有許多API，可以提供給我們進行撈取使用，這邊就先以公路客運公車站牌為例，點選GET &amp;#x2F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="將PTX資料透過Excel與DBeaver匯入至資料庫中">
+<meta property="og:url" content="https://chiungta.github.io/2020/08/03/%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD/index.html">
+<meta property="og:site_name" content="老達遊記">
+<meta property="og:description" content="&amp;#160; &amp;#160; 本章節將會教您如何從PTX服務平台公共運輸整合資訊流通服務平台，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。 PTX資料撈取與儲存PTX API 服務首先我們先進入PTX官方網站，點選紅框處的「線上API說明」。 點選後我們可以看到有許多API，可以提供給我們進行撈取使用，這邊就先以公路客運公車站牌為例，點選GET &amp;#x2F">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/01.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/02.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/03.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/04.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/05.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/06.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/07.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/08.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/09.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/10.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/11.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/12.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/13.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/14.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/15.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/16.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/17.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/18.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/18-1.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/19.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/20.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/21.jpg">
+<meta property="article:published_time" content="2020-08-03T13:11:33.000Z">
+<meta property="article:modified_time" content="2022-03-28T16:33:37.000Z">
+<meta property="article:author" content="CHIUNG TA">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="PTX">
+<meta property="article:tag" content="database">
+<meta property="article:tag" content="Excel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chiungta.github.io/image/IT/20200803/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chiungta.github.io/2020/08/03/將PTX資料輸入至資料庫中/"/>
+
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174277184-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-174277184-1');
+</script>
+
+
+  <title>將PTX資料透過Excel與DBeaver匯入至資料庫中 | 老達遊記</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">老達遊記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            檢索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chiungta.github.io/2020/08/03/%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老達">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/temp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老達遊記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">將PTX資料透過Excel與DBeaver匯入至資料庫中</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-08-03T21:11:33+08:00">
+                2020-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/" itemprop="url" rel="index">
+                    <span itemprop="name">技術分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&amp;#160; &amp;#160; 本章節將會教您如何從PTX服務平台<a target="_blank" rel="noopener" href="https://ptx.transportdata.tw/PTX/">公共運輸整合資訊流通服務平台</a>，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。</p>
+<h1 id="PTX資料撈取與儲存"><a href="#PTX資料撈取與儲存" class="headerlink" title="PTX資料撈取與儲存"></a>PTX資料撈取與儲存</h1><h2 id="PTX-API-服務"><a href="#PTX-API-服務" class="headerlink" title="PTX API 服務"></a>PTX API 服務</h2><p>首先我們先進入<a target="_blank" rel="noopener" href="https://ptx.transportdata.tw/PTX/">PTX官方網站</a>，點選紅框處的「線上API說明」。<br><img src="/image/IT/20200803/01.png"></p>
+<p>點選後我們可以看到有許多API，可以提供給我們進行撈取使用，這邊就先以公路客運公車站牌為例，點選<a target="_blank" rel="noopener" href="https://ptx.transportdata.tw/MOTC#!/InterCityBus/InterCityBusApi_StopOfRoute">GET &#x2F;v2&#x2F;Bus&#x2F;StopOfRoute&#x2F;InterCity 取得公路客運路線與站牌資料</a>，可以看到這個API有提供許多可供篩選的選項，例如只要前50筆資料或是只要某縣市範圍的公車站牌資料等等…<br>我們將滑鼠移到<a style="color:red">$format</a>，點選XML格式並按下左下角的「Try it out!」。<br><img src="/image/IT/20200803/02.jpg"></p>
+<p>點開後我們可以看到PTX幫 <a href="%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD.md">將PTX資料輸入至資料庫中.md</a> 我們預設帶出30筆公車站牌資料，在URI中可以觀察到<a style="color:red">top&#x3D;30</a>，意思是我們只要取前30筆資料即可；<a style="color:red">format&#x3D;JSON</a>的意思則是要求PTX將我們要查詢的資料依照<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/XML">XML</a>或是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/JSON">JSON</a>的資料格式回傳，方便我們後續針對資料進行處理。我們先複製紅框處的Request URI，並且打開EXCEL。<br><img src="/image/IT/20200803/03.jpg"></p>
+<h2 id="XML資料匯入Excel"><a href="#XML資料匯入Excel" class="headerlink" title="XML資料匯入Excel"></a>XML資料匯入Excel</h2><p>打開Excel後點選「資料」→「取得外部資料」→「從其他來源」→「從XML資料匯入」，然後將剛剛複製下列的URI貼至檔案名稱並按「開啟」。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/InterCity?$top=30&amp;$format=XML</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200803/04.png"><br><img src="/image/IT/20200803/05.jpg"><br>過程中Excel會問你XML資料結構與資料匯入位置等問題，我們直接按「確定」就可以了。<br><img src="/image/IT/20200803/06.jpg"><br><img src="/image/IT/20200803/07.jpg"></p>
+<p>過一段時間後，Excel會自動透過REST API從PTX中撈取30條公路客運站牌資料，並且將其匯入活頁簿當中。如果我們想要撈取<a style="color:red">全部的公車站牌資料</a>，則須將URI中的top&#x3D;30刪除，改成下列網址，但由於資料量較為龐大，所以可能撈取的時間也會相對較久。<a style="color:red">公車站牌資料撈取完成後，將Excel以CSV的格式儲存於桌面中，待下一步匯入使用。</a></p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/InterCity?$format=XML</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200803/08.jpg"></p>
+<h1 id="Csv資料匯入MySQL中"><a href="#Csv資料匯入MySQL中" class="headerlink" title="Csv資料匯入MySQL中"></a>Csv資料匯入MySQL中</h1><h2 id="DBeaver-CSV-Database"><a href="#DBeaver-CSV-Database" class="headerlink" title="DBeaver CSV Database"></a>DBeaver CSV Database</h2><p>打開DBeaver這個SQL Client軟體，並且新增新的資料庫，這邊選擇CSV作為資料庫類型。<br><img src="/image/IT/20200803/09.jpg"><br>點選Browse，選擇桌面作為路徑，接著點選Test Connection測試該路徑中是否有相對應的資料，若確任沒有問題後點選完成。<br><img src="/image/IT/20200803/10.jpg"></p>
+<p>此時回到資料庫進行查看，可以看到一個名為CSV - Desktop的資料庫，點開後打開資料表，在資料表中可以看到Stop資料表。對Stop資料表按右鍵，點選「在SQL Console中查看資料」(中英文有所差異)，如果搜尋出來時發現中文為亂碼的狀態，我們透過記事本將Stop.csv檔案打開，看右下角的編碼格式，若是ANSI則另存新檔並挑選UTF-8格式。<br><img src="/image/IT/20200803/11.jpg"><br><img src="/image/IT/20200803/12.jpg"></p>
+<p>上述操作完成後，我們就可以透過SQL語法正常操作公路客運的資料，例如…</p>
+<p>透過條件式篩選基隆地區的公車站牌。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Stop <span class="keyword">WHERE</span> LocationCityCode <span class="operator">=</span><span class="string">&#x27;KEE&#x27;</span> ;</span><br></pre></td></tr></table></figure>
+<p>或是統計基隆地區有多少站牌。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> Stop <span class="keyword">WHERE</span> LocationCityCode <span class="operator">=</span><span class="string">&#x27;KEE&#x27;</span> ;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200803/13.jpg"></p>
+<h2 id="將CSV-Database匯入MySQL"><a href="#將CSV-Database匯入MySQL" class="headerlink" title="將CSV Database匯入MySQL"></a>將CSV Database匯入MySQL</h2><p>對Stop點選右鍵，並按輸出資料。<br><img src="/image/IT/20200803/14.jpg"><br>點選Database作為輸出目標。<br><img src="/image/IT/20200803/15.jpg"><br>點選以前新增的Ubuntu虛擬機與資料庫。<br><img src="/image/IT/20200803/16.jpg"><br><img src="/image/IT/20200803/17.jpg"></p>
+<p>點選好目標資料庫後，目標資料夾會呈現「?」，此時點選左下角的Auto assign，正常情況下會預設與資料來源表相同名稱(Stop);<br>接下來點選Columns..來調整一下每個欄位的字串長度。<br><img src="/image/IT/20200803/18.jpg"><br>將紅框處的string(32767)更改為string(100)，UpdateTime欄位的屬性改為Datetime，全部修改完成後點選OK。<br><img src="/image/IT/20200803/18-1.jpg"></p>
+<p>當你看到這個畫面時，表示DBeaver準備好開始幫你從CSV資料庫複製資料至MySQL當中，Start大力地給他按下去。<br><img src="/image/IT/20200803/19.jpg"><br><img src="/image/IT/20200803/20.jpg"></p>
+<p>若運行完成後，csv table的資料就會複製到MySQL資料庫內，未來若專題或是工作上遇到資料量龐大的CSV檔，EXCEL無法處理時，都可以透過這個方法進行資料上的處理。<br><img src="/image/IT/20200803/21.jpg"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+            <a href="/tags/PTX/" rel="tag"># PTX</a>
+          
+            <a href="/tags/database/" rel="tag"># database</a>
+          
+            <a href="/tags/Excel/" rel="tag"># Excel</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/27/Ubuntu%E5%AE%89%E8%A3%9DMySQL/" rel="next" title="Ubuntu安裝MySQL">
+                <i class="fa fa-chevron-left"></i> Ubuntu安裝MySQL
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/04/26/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful%E6%9C%8D%E5%8B%99/" rel="prev" title="輕鬆建立免費資料庫與RESTful-API服務">
+                輕鬆建立免費資料庫與RESTful-API服務 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+<script src="https://utteranc.es/client.js"
+        repo="CHIUNGTA/CHIUNGTA.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/temp.jpg"
+                alt="老達" />
+            
+              <p class="site-author-name" itemprop="name">老達</p>
+              <p class="site-description motion-element" itemprop="description">紀錄生活中大大小小的事</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CHIUNGTA" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mentha5681@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PTX%E8%B3%87%E6%96%99%E6%92%88%E5%8F%96%E8%88%87%E5%84%B2%E5%AD%98"><span class="nav-number">1.</span> <span class="nav-text">PTX資料撈取與儲存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PTX-API-%E6%9C%8D%E5%8B%99"><span class="nav-number">1.1.</span> <span class="nav-text">PTX API 服務</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XML%E8%B3%87%E6%96%99%E5%8C%AF%E5%85%A5Excel"><span class="nav-number">1.2.</span> <span class="nav-text">XML資料匯入Excel</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Csv%E8%B3%87%E6%96%99%E5%8C%AF%E5%85%A5MySQL%E4%B8%AD"><span class="nav-number">2.</span> <span class="nav-text">Csv資料匯入MySQL中</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DBeaver-CSV-Database"><span class="nav-number">2.1.</span> <span class="nav-text">DBeaver CSV Database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%87CSV-Database%E5%8C%AF%E5%85%A5MySQL"><span class="nav-number">2.2.</span> <span class="nav-text">將CSV Database匯入MySQL</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CHIUNG TA</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+   
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+</html>

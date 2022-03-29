@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ubuntu,MySQL,data base," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;本章節將會教您如何在虛擬機(Ubuntu)內，架設一個屬於自己的免費資料庫，並且利用DBeaver進行資料的基本操作與瀏覽。 安裝MySQL請透過ssh連接到您的虛擬機上，並且輸入下列指令：(安裝Mysql伺服器與客戶端的套件) 12$ sudo apt-get install mysql-server$ sud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu安裝MySQL">
+<meta property="og:url" content="https://chiungta.github.io/2020/07/27/Ubuntu%E5%AE%89%E8%A3%9DMySQL/index.html">
+<meta property="og:site_name" content="老達遊記">
+<meta property="og:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;本章節將會教您如何在虛擬機(Ubuntu)內，架設一個屬於自己的免費資料庫，並且利用DBeaver進行資料的基本操作與瀏覽。 安裝MySQL請透過ssh連接到您的虛擬機上，並且輸入下列指令：(安裝Mysql伺服器與客戶端的套件) 12$ sudo apt-get install mysql-server$ sud">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/1.PNG">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/2.PNG">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/3.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/2-1.PNG">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/4.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/5.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/6.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/7.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/8.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/9.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/10.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/11.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/12.png">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/DBeaver_logo.svg/1024px-DBeaver_logo.svg.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/installdbeaver.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/dbeaver.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/13.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/14.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/15.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20200727/16.png">
+<meta property="article:published_time" content="2020-07-27T13:11:33.000Z">
+<meta property="article:modified_time" content="2022-03-28T16:33:37.000Z">
+<meta property="article:author" content="CHIUNG TA">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="data base">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chiungta.github.io/image/IT/20200727/1.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chiungta.github.io/2020/07/27/Ubuntu安裝MySQL/"/>
+
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174277184-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-174277184-1');
+</script>
+
+
+  <title>Ubuntu安裝MySQL | 老達遊記</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">老達遊記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            檢索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chiungta.github.io/2020/07/27/Ubuntu%E5%AE%89%E8%A3%9DMySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老達">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/temp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老達遊記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Ubuntu安裝MySQL</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-07-27T21:11:33+08:00">
+                2020-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/" itemprop="url" rel="index">
+                    <span itemprop="name">技術分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&amp;#160; &amp;#160; &amp;#160; &amp;#160;本章節將會教您如何在虛擬機(Ubuntu)內，架設一個屬於自己的免費資料庫，並且利用DBeaver進行資料的基本操作與瀏覽。</p>
+<h1 id="安裝MySQL"><a href="#安裝MySQL" class="headerlink" title="安裝MySQL"></a>安裝MySQL</h1><p>請透過ssh連接到您的虛擬機上，並且輸入下列指令：<br>(安裝Mysql伺服器與客戶端的套件)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install mysql-server</span><br><span class="line">$ sudo apt install mysql-client</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/1.PNG"></p>
+<p>若安裝完成後可輸入下列指令，查看MySQL是否安裝成功，若在成功的前提下應可看到下圖。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo netstat -tap | grep mysql</span><br></pre></td></tr></table></figure>
+
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/image/IT/20200727/2.PNG"></h2><h1 id="允許-MySQL-被遠端訪問"><a href="#允許-MySQL-被遠端訪問" class="headerlink" title="允許 MySQL 被遠端訪問"></a>允許 MySQL 被遠端訪問</h1><p>此處設定係方便Windows主機透過IP連接的方式，存取虛擬機中的MySQL資料庫，因此要設定MySQL 允許被遠端訪問。該操作需要透過文字編輯器針對config設定檔進行修改，因此先岔個提，介紹一下Vim。</p>
+<h3 id="Vim基本介紹與操作"><a href="#Vim基本介紹與操作" class="headerlink" title="Vim基本介紹與操作"></a>Vim基本介紹與操作</h3><p>Vim類似windows中的txt編輯器。<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Vim">Vim</a>是由vi編輯器發展而來的一種文字編輯器，linux系統當中為相當常見的文字編輯器，在程式設計師中被大量使用(如同我們在python課時，使用vs code一樣)，它強調手不用離開鍵盤就可以操作，提供一種沉靜式的開發環境。<br><img src="/image/IT/20200727/3.png"></p>
+<p>首先輸入下列指令，安裝vim套件(記得要輸入Y)。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/2-1.PNG"></p>
+<p>我們先練習一下如何使用vim進行文字編輯，我們先移到根目錄，並創建一個名為code的資料夾。<br>在圖中我們可以看到code資料夾。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> / <span class="comment">#移至根目錄</span></span><br><span class="line">$ sudo <span class="built_in">mkdir</span> code <span class="comment">#建立code資料夾</span></span><br><span class="line">$ <span class="built_in">ls</span> <span class="comment">#顯示當前路徑所有檔案與資料夾</span></span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/4.png"></p>
+<p>確定有建立code資料夾後，我們移至code 資料夾中，建立一個.py檔試試看。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> code</span><br><span class="line">$ sudo vim hello.py</span><br></pre></td></tr></table></figure>
+<p>重頭戲來了，當打完上面的指令後應該會看到一片漆黑，如圖。<br><img src="/image/IT/20200727/5.png"><br>此時我們輸入i，畫面就會有所變化，此時我們就可以開始針對這個py檔進行編輯。<br><img src="/image/IT/20200727/6.png"></p>
+<p>此時再輸入一串python的hello world</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello world! Vim&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>輸入完成後，按下Esc鍵(鍵盤左上方那顆)，再輸入<a style="color:red">:wq</a>進行存檔。<br><img src="/image/IT/20200727/7.png"></p>
+<p>存檔完成後terminal會移至code資料夾中，我們再輸入下列指令執行python腳本，若正常情況下應該可以看到console中顯示「hello world! Vim」的字樣。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ls</span></span><br><span class="line">$ python3 hello.py</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/8.png"></p>
+<hr>
+<h1 id="回到主題-允許-MySQL-被遠端訪問-你的實體電腦"><a href="#回到主題-允許-MySQL-被遠端訪問-你的實體電腦" class="headerlink" title="回到主題 允許 MySQL 被遠端訪問 (你的實體電腦)"></a>回到主題 允許 MySQL 被遠端訪問 (你的實體電腦)</h1><h3 id="1-修改-mysql-cnf"><a href="#1-修改-mysql-cnf" class="headerlink" title="1.修改 mysql.cnf"></a>1.修改 mysql.cnf</h3><p>我們先移至到&#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d資料夾中，並且利用Vim將mysqld.cnf進行修改。進入之後我們要將bind-addres &#x3D; 127.0.0.1 的部分註解起來(前面打#字)，完成後一樣輸入<a style="color:red;">:wq</a>退出Vim。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /etc/mysql/mysql.conf.d</span><br><span class="line">$ sudo vim mysqld.cnf</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/9.png"><br><img src="/image/IT/20200727/10.png"></p>
+<hr>
+<h3 id="2-查看MySQL目前運行狀態與查看MySQL的帳密"><a href="#2-查看MySQL目前運行狀態與查看MySQL的帳密" class="headerlink" title="2.查看MySQL目前運行狀態與查看MySQL的帳密"></a>2.查看MySQL目前運行狀態與查看MySQL的帳密</h3><p>輸入下列指令，查看目前MySQL服務是否正在運行?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service mysql status</span><br></pre></td></tr></table></figure>
+<p>若是沒有正在執行，請再輸入下列指令，使MySQL資料庫重啟：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service mysql restart </span><br></pre></td></tr></table></figure>
+<h3 id="3-登入MySQL新增使用者帳號"><a href="#3-登入MySQL新增使用者帳號" class="headerlink" title="3.登入MySQL新增使用者帳號"></a>3.登入MySQL新增使用者帳號</h3><p>接下來我們要進入MySQL建立新的使用者帳號，基於安全性的原因，故而不是使用root對外進行開放。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mysql <span class="comment">#進入MySQL</span></span><br></pre></td></tr></table></figure>
+<p>若成功進入的話，應該可以看到下圖：<br><img src="/image/IT/20200727/11.png"></p>
+<p>接下來我們輸入下列指令，username是您想要設定的使用者名稱，password是此使用者帳號的密碼。<br>設置完成後我們再輸入exit退出MySQL。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;username&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;password&#x27;</span>; <span class="comment">--新增使用者</span></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;username&#x27;</span>@<span class="string">&#x27;%&#x27;</span> <span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION; <span class="comment">--給予最大管理權限</span></span><br><span class="line">EXIT;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="防火牆設定"><a href="#防火牆設定" class="headerlink" title="防火牆設定"></a>防火牆設定</h3><p>MySQL預設的<a style="color:red;"><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%80%9A%E8%A8%8A%E5%9F%A0">通訊埠</a></a><a style="color :red ;"> (英文為PORT)</a>為3306，我們要設定防火牆開放port 3306供外部網路進行存取，請輸入下列指令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install ufw <span class="comment">#安裝防火牆</span></span><br><span class="line">$ sudo ufw allow 3306 <span class="comment">#開放port 3306</span></span><br><span class="line">$ sudo ufw <span class="built_in">enable</span> <span class="comment">#啟動防火牆</span></span><br><span class="line">$ sudo ufw status numbered <span class="comment">#查看目前防火牆規則</span></span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/12.png"></p>
+<hr>
+<h3 id="下載資料庫管理工具-DBeaver"><a href="#下載資料庫管理工具-DBeaver" class="headerlink" title="下載資料庫管理工具(DBeaver)"></a>下載資料庫管理工具(DBeaver)</h3><p>老達在這邊推薦一款超好用的資料庫管理工具「<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/DBeaver">DBeaver</a>」，它的強大之處在於可以透過一套管理工具，連接多種不同類型的資料庫(如常見的Oracle、SQL Server、MySQL、SQLite等等)。首先我們先至<a target="_blank" rel="noopener" href="https://dbeaver.io/download/">DBeaver官方網站</a>下載安裝檔，如果我們是用Windows系統的話，請點選紅框處進行下載。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/DBeaver_logo.svg/1024px-DBeaver_logo.svg.png"><br><img src="/image/IT/20200727/installdbeaver.png"></p>
+<hr>
+<h3 id="DBeaver-MySQL設定"><a href="#DBeaver-MySQL設定" class="headerlink" title="DBeaver MySQL設定"></a>DBeaver MySQL設定</h3><p>DBeaver的安裝流程老達就不詳細操作了，基本是無腦安裝。安裝完成後應該可以看到乾乾淨淨的操作頁面。點選左上角紅框處新建虛擬機MySQL的連接。<br><img src="/image/IT/20200727/dbeaver.png"></p>
+<p>在紅框處輸入mysql並按下enter搜尋，點選中間的MySQL+進行設定。<br><img src="/image/IT/20200727/13.png"><br>接下來輸入虛擬機ip，我們可以發現DBeaver預設已經代port 3306了，所以我們就不進行修改。並輸入我們剛剛設定的使用者名稱與密碼，並且設定Server Time Zone為Asia&#x2F;Taipei，設定好後按下右下角的Test Connection…。</p>
+<p><img src="/image/IT/20200727/14.png"><br><img src="/image/IT/20200727/15.png"><br>如果沒有看到上面的成功連接畫面，並且出現<a style="color:red;"><br>Public Key Retrieval is not allowed.</a>的錯誤字串時，請至裝置屬性的設定頁面將allowPublicKeyRetrieval設定為True，調整完成後再測試看看是否可以連接。<br><img src="/image/IT/20200727/16.png"></p>
+<hr>
+<p>下篇會分享如何將PTX資料匯入資料庫中，透過SQL指令進行處理與分析。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+            <a href="/tags/data-base/" rel="tag"># data base</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/22/vmware-%E8%88%87-ubuntu-%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E5%AE%9A/" rel="next" title="VMware 與 Ubuntu 基本安裝與設定">
+                <i class="fa fa-chevron-left"></i> VMware 與 Ubuntu 基本安裝與設定
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/03/%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD/" rel="prev" title="將PTX資料透過Excel與DBeaver匯入至資料庫中">
+                將PTX資料透過Excel與DBeaver匯入至資料庫中 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+<script src="https://utteranc.es/client.js"
+        repo="CHIUNGTA/CHIUNGTA.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/temp.jpg"
+                alt="老達" />
+            
+              <p class="site-author-name" itemprop="name">老達</p>
+              <p class="site-description motion-element" itemprop="description">紀錄生活中大大小小的事</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CHIUNGTA" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mentha5681@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%9DMySQL"><span class="nav-number">1.</span> <span class="nav-text">安裝MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%81%E8%A8%B1-MySQL-%E8%A2%AB%E9%81%A0%E7%AB%AF%E8%A8%AA%E5%95%8F"><span class="nav-number">2.</span> <span class="nav-text">允許 MySQL 被遠端訪問</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vim%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9%E8%88%87%E6%93%8D%E4%BD%9C"><span class="nav-number">2.0.1.</span> <span class="nav-text">Vim基本介紹與操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E5%88%B0%E4%B8%BB%E9%A1%8C-%E5%85%81%E8%A8%B1-MySQL-%E8%A2%AB%E9%81%A0%E7%AB%AF%E8%A8%AA%E5%95%8F-%E4%BD%A0%E7%9A%84%E5%AF%A6%E9%AB%94%E9%9B%BB%E8%85%A6"><span class="nav-number">3.</span> <span class="nav-text">回到主題 允許 MySQL 被遠端訪問 (你的實體電腦)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BF%AE%E6%94%B9-mysql-cnf"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.修改 mysql.cnf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%9F%A5%E7%9C%8BMySQL%E7%9B%AE%E5%89%8D%E9%81%8B%E8%A1%8C%E7%8B%80%E6%85%8B%E8%88%87%E6%9F%A5%E7%9C%8BMySQL%E7%9A%84%E5%B8%B3%E5%AF%86"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.查看MySQL目前運行狀態與查看MySQL的帳密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%99%BB%E5%85%A5MySQL%E6%96%B0%E5%A2%9E%E4%BD%BF%E7%94%A8%E8%80%85%E5%B8%B3%E8%99%9F"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.登入MySQL新增使用者帳號</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E7%89%86%E8%A8%AD%E5%AE%9A"><span class="nav-number">3.0.4.</span> <span class="nav-text">防火牆設定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BC%89%E8%B3%87%E6%96%99%E5%BA%AB%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-DBeaver"><span class="nav-number">3.0.5.</span> <span class="nav-text">下載資料庫管理工具(DBeaver)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBeaver-MySQL%E8%A8%AD%E5%AE%9A"><span class="nav-number">3.0.6.</span> <span class="nav-text">DBeaver MySQL設定</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CHIUNG TA</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+   
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+</html>

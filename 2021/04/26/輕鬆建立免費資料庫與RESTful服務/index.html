@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="google-app-script," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;#160; &amp;#160; 在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至外網環境時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用Google app Engine這類的應用程式代管平台，這對">
+<meta property="og:type" content="article">
+<meta property="og:title" content="輕鬆建立免費資料庫與RESTful-API服務">
+<meta property="og:url" content="https://chiungta.github.io/2021/04/26/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful%E6%9C%8D%E5%8B%99/index.html">
+<meta property="og:site_name" content="老達遊記">
+<meta property="og:description" content="&amp;#160; &amp;#160; 在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至外網環境時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用Google app Engine這類的應用程式代管平台，這對">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://miro.medium.com/max/996/1*J6Qm1Gr3RaG1oVPW5v4-0Q.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/1.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/2.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/3.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/4.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/5.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/6.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/7.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/8.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/9.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/10.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/11.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/12.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/14.jpg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/15.jpg">
+<meta property="article:published_time" content="2021-04-25T17:59:58.000Z">
+<meta property="article:modified_time" content="2022-03-28T16:33:37.000Z">
+<meta property="article:author" content="CHIUNG TA">
+<meta property="article:tag" content="google-app-script">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://miro.medium.com/max/996/1*J6Qm1Gr3RaG1oVPW5v4-0Q.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chiungta.github.io/2021/04/26/輕鬆建立免費資料庫與RESTful服務/"/>
+
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174277184-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-174277184-1');
+</script>
+
+
+  <title>輕鬆建立免費資料庫與RESTful-API服務 | 老達遊記</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">老達遊記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            檢索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chiungta.github.io/2021/04/26/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful%E6%9C%8D%E5%8B%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="老達">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/temp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老達遊記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">輕鬆建立免費資料庫與RESTful-API服務</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2021-04-26T01:59:58+08:00">
+                2021-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E8%A1%93%E5%88%86%E4%BA%AB/" itemprop="url" rel="index">
+                    <span itemprop="name">技術分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&amp;#160; &amp;#160; 在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至<strong>外網環境</strong>時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用<a target="_blank" rel="noopener" href="https://cloud.google.com/appengine/?hl=zh-tw&utm_source=google&utm_medium=cpc&utm_campaign=japac-TW-all-zh-dr-bkws-all-super-trial-e-dr-1009882&utm_content=text-ad-none-none-DEV_c-CRE_437849980448-ADGP_Hybrid%20%7C%20BKWS%20-%20EXA%20%7C%20Txt%20~%20Compute%20~%20App%20Engine_app%20engine-google%20app%20engine-en-KWID_43700031884576212-kwd-5245655962&userloc_9040380-network_g&utm_term=KW_google%20app%20engine&gclid=Cj0KCQjwppSEBhCGARIsANIs4p6ZQAX0vDAhrdm0kmcdS9sfNnbAw5Hzxf2i8N1Fr2DXXI2YOEyDblcaAkjVEALw_wcB&gclsrc=aw.ds">Google app Engine</a>這類的應用程式代管平台，這對於只是要單純確認前端程式是否有誤的新手小白來說過於麻煩，因此下列將利用Google apps script，建立簡易型的資料存取API 服務。</p>
+<h1 id="什麼是Google-apps-script"><a href="#什麼是Google-apps-script" class="headerlink" title="什麼是Google apps script ?"></a>什麼是Google apps script ?</h1><p><img src="https://miro.medium.com/max/996/1*J6Qm1Gr3RaG1oVPW5v4-0Q.png"></p>
+<p>簡單來說就是Google透過基於javascript的語法，將Google家中多數的服務進行串聯，提供使用者進行<strong>客製化</strong>的服務使用。目前在使用上多為免費，雖說在呼叫次數上有額度限制，但對於一般非商業使用者是綽綽有餘的。</p>
+<h1 id="如何開始"><a href="#如何開始" class="headerlink" title="如何開始?"></a>如何開始?</h1><h2 id="建立Google試算表"><a href="#建立Google試算表" class="headerlink" title="建立Google試算表"></a>建立Google試算表</h2><ol>
+<li>首先在<a target="_blank" rel="noopener" href="https://drive.google.com/drive/u/0/">Google雲端硬碟</a>中隨意新增的資料夾，並新增一個「Google試算表」。<br><img src="/image/IT/20210423/1.jpg"></li>
+</ol>
+<h2 id="熟悉Google-Apps-Script編輯器"><a href="#熟悉Google-Apps-Script編輯器" class="headerlink" title="熟悉Google Apps Script編輯器"></a>熟悉Google Apps Script編輯器</h2><ol start="2">
+<li><p>進入Google試算表 後，點選工具 -&gt; 指令碼編輯器，隨後系統將會將你導至Google Apps Script的編輯頁面，我們可以先針對左上方的專案名稱進行編輯，改成自己喜歡的名稱。<br><img src="/image/IT/20210423/2.png"><br><img src="/image/IT/20210423/3.jpg"></p>
+</li>
+<li><p>常用功能如下圖所示，A區為程式碼編輯區塊，我們可以在此撰寫程式碼相關邏輯或呼叫Google服務，如試算表、雲端硬碟、翻譯等日常生活中常見的<strong>谷歌</strong>服務；B選項為主編輯頁面，在此頁面可進行方法偵錯與程式碼發佈；C為觸發條件設定區，簡單來說就是可以在固定時間執行特定方法，如在每個交易日13:30過後，將今日股市收盤價儲存等，日常性的固定操作；D為該專案整體服務的紀錄檔(logs)，在此可以查看所有的方法執行紀錄。<br><img src="/image/IT/20210423/4.jpg"></p>
+<h1 id="開始寫程式囉"><a href="#開始寫程式囉" class="headerlink" title="開始寫程式囉!"></a>開始寫程式囉!</h1></li>
+</ol>
+<ul>
+<li><strong>基本迴圈</strong><br>請在A區撰寫下列程式碼，按下儲存鍵選取hello方法並按下執行，即可看到10次「Hello Google Apps Script」。</li>
+</ul>
+<p><strong>迴圈程式碼範例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">hello</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Hello Google Apps Script:<span class="subst">$&#123;i&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20210423/5.jpg"></p>
+<ul>
+<li><strong>建立例外訊息查看機制</strong><br>在開發Api服務時往往會遇到意料之外的情形，此時就需要透過<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/try...catch">try…catch機制</a>取得錯誤訊息，方便後續開發除錯使用，下列為try..catch的基本寫法。</li>
+</ul>
+<p><strong>例外程式碼範例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">doGet</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;發生例外狀況&#x27;</span>);<span class="comment">//模擬系統產生例外狀況</span></span><br><span class="line">    <span class="keyword">var</span> data =&#123;<span class="string">&quot;Message&quot;</span>:<span class="string">&quot;Hello World!&quot;</span>&#125;;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">ContentService</span>.<span class="title function_">createTextOutput</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data))</span><br><span class="line">      .<span class="title function_">setMimeType</span>(<span class="title class_">ContentService</span>.<span class="property">MimeType</span>.<span class="property">JSON</span>);</span><br><span class="line">  &#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">error</span>(err);<span class="comment">//顯示錯誤訊息</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20210423/6.jpg"></p>
+<h2 id="API服務建立"><a href="#API服務建立" class="headerlink" title="API服務建立"></a>API服務建立</h2><h3 id="API程式方法撰寫"><a href="#API程式方法撰寫" class="headerlink" title="API程式方法撰寫"></a>API程式方法撰寫</h3><p>Google Apps Script的API接口預設方法為「doGet、doPost、doPut與doDelete」，因此我們可以先透過下列程式碼，撰寫RESRful GET Type的API。</p>
+<p><strong>API服務範例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">doGet</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data =&#123;<span class="string">&quot;Message&quot;</span>:<span class="string">&quot;Hello World!&quot;</span>&#125;;<span class="comment">//模擬取的的資料</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">ContentService</span>.<span class="title function_">createTextOutput</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data))</span><br><span class="line">      .<span class="title function_">setMimeType</span>(<span class="title class_">ContentService</span>.<span class="property">MimeType</span>.<span class="property">JSON</span>); <span class="comment">//將文字轉為JSON格式</span></span><br><span class="line">  &#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);<span class="comment">//顯示錯誤訊息</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="進行部署作業"><a href="#進行部署作業" class="headerlink" title="進行部署作業"></a>進行部署作業</h3><p>點選右上角部署 &amp;rarr; 新增部署作業 &amp;rarr; 設定 &amp;rarr; 勾選「網頁應用程式」、「API執行檔」 &amp;rarr; 部署，即可完成部署，並會取得一組網址，我們將其複製貼到瀏覽器中即可得到我們要的答案。<br><img src="/image/IT/20210423/7.jpg"><br><img src="/image/IT/20210423/8.jpg"><br><img src="/image/IT/20210423/9.jpg"><br><strong>取的JSON格式的資料</strong><br><img src="/image/IT/20210423/10.jpg"></p>
+<h2 id="讀取Google-試算表資料"><a href="#讀取Google-試算表資料" class="headerlink" title="讀取Google 試算表資料"></a>讀取Google 試算表資料</h2><p>在這邊我們要將doGet方法中的<strong>data</strong>改成試算表中的資料，首先我們先將下表資料複製到試算表中。</p>
+<table>
+<thead>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Class</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Jim</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Tom</td>
+<td>A</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Pop</td>
+<td>B</td>
+</tr>
+<tr>
+<td>4</td>
+<td>yam</td>
+<td>B</td>
+</tr>
+<tr>
+<td>5</td>
+<td>lol</td>
+<td>B</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Aoo</td>
+<td>C</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Voo</td>
+<td>C</td>
+</tr>
+</tbody></table>
+<p><img src="/image/IT/20210423/11.jpg"></p>
+<p>接下來我們將目光移到試算表的網址中，將紅框處的部分複製下來，他們分別是<font color=red>試算表</font>與<font color=blue>活頁簿</font>的ID，後續我們將會透過他搜尋我們要的資料。</p>
+<h2 id="引用試算表服務"><a href="#引用試算表服務" class="headerlink" title="引用試算表服務"></a>引用試算表服務</h2><p>由於我們要使用Google試算表的功能與服務，因此我們要點選「服務」，並新增「Google Sheets API」服務，提供本專案可以使用的服務。<br><img src="/image/IT/20210423/12.jpg"></p>
+<h2 id="透過Apps-Script讀取Google試算表資料"><a href="#透過Apps-Script讀取Google試算表資料" class="headerlink" title="透過Apps Script讀取Google試算表資料"></a>透過Apps Script讀取Google試算表資料</h2><p>接下來請將下列程式碼貼至你們的專案當中。</p>
+<p><strong>讀取Google試算表範例</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///讀取測試</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">readSheetTest</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">var</span> sheetId=<span class="string">&#x27;輸入試算表編號&#x27;</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">GetSheetData</span>(sheetId, <span class="string">&#x27;工作表1&#x27;</span>, <span class="string">&#x27;!A1:C&#x27;</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">///依試算表編號與範圍讀取資料</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">GetSheetData</span>(<span class="params">sheetId, sheetName, range</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> spreadsheetId = sheetId;</span><br><span class="line">    <span class="keyword">var</span> rangeName = <span class="string">`<span class="subst">$&#123;sheetName&#125;</span><span class="subst">$&#123;range&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">var</span> values = <span class="title class_">Sheets</span>.<span class="property">Spreadsheets</span>.<span class="property">Values</span>.<span class="title function_">get</span>(spreadsheetId, rangeName).<span class="property">values</span>;</span><br><span class="line">    <span class="keyword">if</span> (!values) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;No data fond in google sheet&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> values;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>撰寫完成並按下儲存鍵後，執行readSheetTest方法，剛剛在Google試算表中撰寫的資料全部都被拉出來了，我們只要將這個方法與上述API部署方法相互結合即可透過API服務取得資料，下篇文章將會分享儲存資料的寫法。<br><img src="/image/IT/20210423/14.jpg"><br><img src="/image/IT/20210423/15.jpg"></p>
+<h1 id="完整程式碼"><a href="#完整程式碼" class="headerlink" title="完整程式碼"></a>完整程式碼</h1><p>code.gs</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _sheetId=<span class="string">&#x27;輸入你的試算表ID&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">doGet</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> data =<span class="title class_">GetSheetData</span>(_sheetId, <span class="string">&#x27;工作表1&#x27;</span>, <span class="string">&#x27;!A1:C&#x27;</span>);<span class="comment">//模擬取的的資料</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">ContentService</span>.<span class="title function_">createTextOutput</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data))</span><br><span class="line">      .<span class="title function_">setMimeType</span>(<span class="title class_">ContentService</span>.<span class="property">MimeType</span>.<span class="property">JSON</span>); <span class="comment">//將文字轉為JSON格式</span></span><br><span class="line">  &#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">error</span>(err);<span class="comment">//顯示錯誤訊息</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">hello</span>(<span class="params"></span>)&#123;</span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Hello Google Apps Script:<span class="subst">$&#123;i&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">readSheetTest</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">GetSheetData</span>(_sheetId, <span class="string">&#x27;工作表1&#x27;</span>, <span class="string">&#x27;!A1:C&#x27;</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">GetSheetData</span>(<span class="params">sheetId, sheetName, range</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> spreadsheetId = sheetId;</span><br><span class="line">    <span class="keyword">var</span> rangeName = <span class="string">`<span class="subst">$&#123;sheetName&#125;</span><span class="subst">$&#123;range&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">var</span> values = <span class="title class_">Sheets</span>.<span class="property">Spreadsheets</span>.<span class="property">Values</span>.<span class="title function_">get</span>(spreadsheetId, rangeName).<span class="property">values</span>;</span><br><span class="line">    <span class="keyword">if</span> (!values) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;No data fond in google sheet&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> values;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/google-app-script/" rel="tag"># google-app-script</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/03/%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD/" rel="next" title="將PTX資料透過Excel與DBeaver匯入至資料庫中">
+                <i class="fa fa-chevron-left"></i> 將PTX資料透過Excel與DBeaver匯入至資料庫中
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/22/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful-API%E6%9C%8D%E5%8B%99-%E5%84%B2%E5%AD%98%E7%AF%87/" rel="prev" title="輕鬆建立免費資料庫與RESTful-API服務-儲存篇">
+                輕鬆建立免費資料庫與RESTful-API服務-儲存篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+<script src="https://utteranc.es/client.js"
+        repo="CHIUNGTA/CHIUNGTA.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+  
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/temp.jpg"
+                alt="老達" />
+            
+              <p class="site-author-name" itemprop="name">老達</p>
+              <p class="site-description motion-element" itemprop="description">紀錄生活中大大小小的事</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CHIUNGTA" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:mentha5681@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E9%BA%BC%E6%98%AFGoogle-apps-script"><span class="nav-number">1.</span> <span class="nav-text">什麼是Google apps script ?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%96%8B%E5%A7%8B"><span class="nav-number">2.</span> <span class="nav-text">如何開始?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8BGoogle%E8%A9%A6%E7%AE%97%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">建立Google試算表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%86%9F%E6%82%89Google-Apps-Script%E7%B7%A8%E8%BC%AF%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">熟悉Google Apps Script編輯器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%96%8B%E5%A7%8B%E5%AF%AB%E7%A8%8B%E5%BC%8F%E5%9B%89"><span class="nav-number">3.</span> <span class="nav-text">開始寫程式囉!</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#API%E6%9C%8D%E5%8B%99%E5%BB%BA%E7%AB%8B"><span class="nav-number">3.1.</span> <span class="nav-text">API服務建立</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API%E7%A8%8B%E5%BC%8F%E6%96%B9%E6%B3%95%E6%92%B0%E5%AF%AB"><span class="nav-number">3.1.1.</span> <span class="nav-text">API程式方法撰寫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%B2%E8%A1%8C%E9%83%A8%E7%BD%B2%E4%BD%9C%E6%A5%AD"><span class="nav-number">3.1.2.</span> <span class="nav-text">進行部署作業</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%80%E5%8F%96Google-%E8%A9%A6%E7%AE%97%E8%A1%A8%E8%B3%87%E6%96%99"><span class="nav-number">3.2.</span> <span class="nav-text">讀取Google 試算表資料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%A9%A6%E7%AE%97%E8%A1%A8%E6%9C%8D%E5%8B%99"><span class="nav-number">3.3.</span> <span class="nav-text">引用試算表服務</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%8F%E9%81%8EApps-Script%E8%AE%80%E5%8F%96Google%E8%A9%A6%E7%AE%97%E8%A1%A8%E8%B3%87%E6%96%99"><span class="nav-number">3.4.</span> <span class="nav-text">透過Apps Script讀取Google試算表資料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BC%8F%E7%A2%BC"><span class="nav-number">4.</span> <span class="nav-text">完整程式碼</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CHIUNG TA</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+   
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"log":false});</script></body>
+</html>

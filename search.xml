@@ -64,6 +64,38 @@
       </tags>
   </entry>
   <entry>
+    <title>大阪市區巡禮</title>
+    <url>/2017/11/21/%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8D%80%E5%B7%A1%E7%A6%AE/</url>
+    <content><![CDATA[<h1 id="大阪古城"><a href="#大阪古城" class="headerlink" title="大阪古城"></a>大阪古城</h1><p><img src="/image/travel/2017/3183.jpg"></p>
+<blockquote class="blockquote-center"><p>大阪城 護城河一景 </p>
+</blockquote>
+<br>
+大阪城座落於日本大阪市中央區，為大阪市著名的地標之一，為日本歷史上三大名城之一。在交通方面，主要入口為鄰近大阪市督營地鐵中央線與谷町線交會處的谷町四丁目站，交通可謂是相當便捷!
+---
+
+<h1 id="難波宮跡遺址群"><a href="#難波宮跡遺址群" class="headerlink" title="難波宮跡遺址群"></a>難波宮跡遺址群</h1><p><img src="/image/travel/2017/%E9%9B%A3%E6%B3%A2%E9%81%BA%E5%9D%80.jpg"></p>
+<p align="center">難波宮跡遺址群</p>
+
+<p>距離大阪城入口最近的車站口為谷町四丁目站的9號出口，出車站後第一眼瞧見的即是「法円坂遺跡復元倉庫」，為古墓時代(西元300~600年間)的修復版倉庫建築物，為當地的地標之一。鄰近大阪城、難波宮跡等重要文化遺址上，大阪歷史博物館理所應當也設立於此。</p>
+<!-- ```c#
+Console.WriteLine("HELLO");
+Console.WriteLine("World!!") ;
+Console.ReadLine() ; 
+``` -->
+
+
+
+
+]]></content>
+      <categories>
+        <category>老達遊記</category>
+      </categories>
+      <tags>
+        <tag>travel</tag>
+        <tag>自由行</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VMware 與 Ubuntu 基本安裝與設定</title>
     <url>/2020/07/22/vmware-%E8%88%87-ubuntu-%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E5%AE%9A/</url>
     <content><![CDATA[<p>這邊將會簡單與各位介紹如何在WINDOWS主機中安裝<a href="https://zh.wikipedia.org/wiki/%E8%99%9B%E6%93%AC%E6%A9%9F%E5%99%A8">虛擬機器</a>去運行不同的OS執行系統，譬如說透過一台實體電腦，同時運行多種不同的作業系統，以達到降低硬體成本的目的(一種一魚多吃的概念)。</p>
@@ -129,85 +161,6 @@
       <tags>
         <tag>ubuntu</tag>
         <tag>vmware</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大阪市區巡禮</title>
-    <url>/2017/11/21/%E5%A4%A7%E9%98%AA%E5%B8%82%E5%8D%80%E5%B7%A1%E7%A6%AE/</url>
-    <content><![CDATA[<h1 id="大阪古城"><a href="#大阪古城" class="headerlink" title="大阪古城"></a>大阪古城</h1><p><img src="/image/travel/2017/3183.jpg"></p>
-<blockquote class="blockquote-center"><p>大阪城 護城河一景 </p>
-</blockquote>
-<br>
-大阪城座落於日本大阪市中央區，為大阪市著名的地標之一，為日本歷史上三大名城之一。在交通方面，主要入口為鄰近大阪市督營地鐵中央線與谷町線交會處的谷町四丁目站，交通可謂是相當便捷!
----
-
-<h1 id="難波宮跡遺址群"><a href="#難波宮跡遺址群" class="headerlink" title="難波宮跡遺址群"></a>難波宮跡遺址群</h1><p><img src="/image/travel/2017/%E9%9B%A3%E6%B3%A2%E9%81%BA%E5%9D%80.jpg"></p>
-<p align="center">難波宮跡遺址群</p>
-
-<p>距離大阪城入口最近的車站口為谷町四丁目站的9號出口，出車站後第一眼瞧見的即是「法円坂遺跡復元倉庫」，為古墓時代(西元300~600年間)的修復版倉庫建築物，為當地的地標之一。鄰近大阪城、難波宮跡等重要文化遺址上，大阪歷史博物館理所應當也設立於此。</p>
-<!-- ```c#
-Console.WriteLine("HELLO");
-Console.WriteLine("World!!") ;
-Console.ReadLine() ; 
-``` -->
-
-
-
-
-]]></content>
-      <categories>
-        <category>老達遊記</category>
-      </categories>
-      <tags>
-        <tag>travel</tag>
-        <tag>自由行</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用google-app-script建立免費的免費的Line通知功能(推文篇)</title>
-    <url>/2022/03/30/%E4%BD%BF%E7%94%A8google-app-script%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E7%9A%84%E5%85%8D%E8%B2%BB%E7%9A%84Line%E9%80%9A%E7%9F%A5%E5%8A%9F%E8%83%BD(%E6%8E%A8%E6%96%87%E7%AF%87)/</url>
-    <content><![CDATA[<p>從學校畢業出社會一段時間後，不知道大家有沒有一種感覺，就是有的沒有的Line工作群組會多的莫名其妙，然而在工作之餘還是需要休閒娛樂一下。因此我們公司私下建立了一個 <del>靠北上司</del> 抒發身心壓力的群組，專門給大家發一些有的沒有個搞笑圖。<br><img src="/image/IT/20220330/1.jpg"></p>
-<p>但是有在職場上工作的小夥伴就知道，這種群組是很危險的，一個擦槍走火(例如主管看到啥的)，就有可能造成不可挽回的遺憾；也有可能自己貼的一張梗圖，不小心使其他人的玻璃心碎掉，或是讓有心之人有了對號入座的機會。因此本魯建議使用Line notify發送梗圖，既方便又不會傷了大家的面子xd，因此接下來分上下兩篇介紹如何從google雲端資料夾中拿梗圖，並發送到Line群組中。</p>
-<h1 id="申請一個Line-Notify-Token"><a href="#申請一個Line-Notify-Token" class="headerlink" title="申請一個Line Notify Token"></a>申請一個Line Notify Token</h1><ol>
-<li><p>進入 <a href="https://notify-bot.line.me/zh_TW/">Line Notify 官網</a>並且點選右上角的登入按鈕。</p>
-</li>
-<li><p>登入你平常使用的Line帳號密碼，登入後點選右上角的帳號，並且點選個人頁面選項：<br><img src="/image/IT/20220330/2.png"></p>
-</li>
-<li><p>點選並進入頁面後，拉到最下面就可以看到「發行存取權杖」的按鈕，並按照以下的圖片說明進行操作即可。<br><img src="/image/IT/20220330/3.png"><br><img src="/image/IT/20220330/4.png"><br><img src="/image/IT/20220330/5.png"></p>
-</li>
-</ol>
-<p>到這邊申請就告一段落了，接下來將目光轉移到Google app script當中。</p>
-<h1 id="免費建立一個API-推送服務"><a href="#免費建立一個API-推送服務" class="headerlink" title="免費建立一個API 推送服務"></a>免費建立一個API 推送服務</h1><ol>
-<li><p>接下來我們要透過一個免費的平台，讓它可以定時幫我們去呼叫Line Notify 去傳送訊息，首先我們先進入<a href="https://www.google.com/script/start/">Google App Script官網</a>並點選右上角的「Start Scripting Home」按鈕。<br><img src="/image/IT/20220330/6.png"></p>
-</li>
-<li><p>點選左上角的「新增專案」,系統就會生成一個專案檔給你了，如下圖。<br><img src="/image/IT/20220330/7.png"><br><img src="/image/IT/20220330/8.png"></p>
-</li>
-<li><p>為避免有些人不懂這些東西是什麼鬼東西，我們先依照下面流程操作一遍：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程式碼範例</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">firstFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title class_">Logger</span>.<span class="title function_">log</span>(<span class="string">&#x27;這是我的第一個方法！！！&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20220330/9.png"></p>
-</li>
-</ol>
-<p>執行後，有沒有發現比想像中的還要簡單呢？<br>接下來重頭戲來了！</p>
-<ol start="4">
-<li>直接上程式碼給大家使用</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> _key =<span class="string">&#x27;你剛剛複製的Line Notify 權杖&#x27;</span> <span class="comment">//line notify token</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 傳送line notify</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sendLineNotify</span>(<span class="params">message</span>)&#123;</span><br><span class="line">   <span class="title class_">UrlFetchApp</span>.<span class="title function_">fetch</span>(<span class="string">&#x27;https://notify-api.line.me/api/notify&#x27;</span>, &#123;</span><br><span class="line">        <span class="string">&#x27;headers&#x27;</span>: &#123;</span><br><span class="line">           <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Bearer &#x27;</span> + _key,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;payload&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;message&#x27;</span>:message</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 早上說你好</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">goodMorning</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">sendLineNotify</span>(<span class="string">&#x27;早安啊&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>第次執行<strong>goodMorning</strong>這個方法時，系統會要求你開啟權限，基本也就如下圖所，一路點同意即可。<br><img src="/image/IT/20220330/10.png"><br><img src="/image/IT/20220330/11.png"><br><img src="/image/IT/20220330/12.png"><br><img src="/image/IT/20220330/13.png"></p>
-<ol start="5">
-<li>執行完成後你選擇的Line Notify就會傳送訊息到你指定的聊天群組當中了！<br><img src="/image/IT/20220330/14.png"></li>
-</ol>
-<h1 id="自動執行設定"><a href="#自動執行設定" class="headerlink" title="自動執行設定"></a>自動執行設定</h1><ol>
-<li>點選左邊的「觸發條件」，並新增觸發條件，執行方法中我們選擇<strong>goodMorning</strong>這個方法，並且依照圖片中的設定進行調整，那系統每天早上7點到8點之間，系統會自動向你說一聲早安（溫腥）。<br><img src="/image/IT/20220330/16.png"><br><img src="/image/IT/20220330/17.png"></li>
-</ol>
-<h2 id="需要注意事項！"><a href="#需要注意事項！" class="headerlink" title="需要注意事項！"></a><strong>需要注意事項！</strong></h2><p>如果你是點選1人以上的聊天群組的話，你就要邀情Line Notify到你的聊天群組當中，否則它是不會呼叫的！<br><img src="/image/IT/20220330/15.png"></p>
-<h1 id="下篇預告"><a href="#下篇預告" class="headerlink" title="下篇預告"></a>下篇預告</h1><p>下一篇會教大家使用Google雲端資料夾抓圖片發送，敬請期待～</p>
-]]></content>
-      <categories>
-        <category>技術分享</category>
-      </categories>
-      <tags>
-        <tag>Line</tag>
-        <tag>google-app-script</tag>
       </tags>
   </entry>
   <entry>
@@ -339,6 +292,53 @@ Console.ReadLine() ;
       </categories>
       <tags>
         <tag>google-app-script</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用google-app-script建立免費的免費的Line通知功能(推文篇)</title>
+    <url>/2022/03/30/%E4%BD%BF%E7%94%A8google-app-script%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E7%9A%84%E5%85%8D%E8%B2%BB%E7%9A%84Line%E9%80%9A%E7%9F%A5%E5%8A%9F%E8%83%BD(%E6%8E%A8%E6%96%87%E7%AF%87)/</url>
+    <content><![CDATA[<p>從學校畢業出社會一段時間後，不知道大家有沒有一種感覺，就是有的沒有的Line工作群組會多的莫名其妙，然而在工作之餘還是需要休閒娛樂一下。因此我們公司私下建立了一個 <del>靠北上司</del> 抒發身心壓力的群組，專門給大家發一些有的沒有個搞笑圖。<br><img src="/image/IT/20220330/1.jpg"></p>
+<p>但是有在職場上工作的小夥伴就知道，這種群組是很危險的，一個擦槍走火(例如主管看到啥的)，就有可能造成不可挽回的遺憾；也有可能自己貼的一張梗圖，不小心使其他人的玻璃心碎掉，或是讓有心之人有了對號入座的機會。因此本魯建議使用Line notify發送梗圖，既方便又不會傷了大家的面子xd，因此接下來分上下兩篇介紹如何從google雲端資料夾中拿梗圖，並發送到Line群組中。</p>
+<h1 id="申請一個Line-Notify-Token"><a href="#申請一個Line-Notify-Token" class="headerlink" title="申請一個Line Notify Token"></a>申請一個Line Notify Token</h1><ol>
+<li><p>進入 <a href="https://notify-bot.line.me/zh_TW/">Line Notify 官網</a>並且點選右上角的登入按鈕。</p>
+</li>
+<li><p>登入你平常使用的Line帳號密碼，登入後點選右上角的帳號，並且點選個人頁面選項：<br><img src="/image/IT/20220330/2.png"></p>
+</li>
+<li><p>點選並進入頁面後，拉到最下面就可以看到「發行存取權杖」的按鈕，並按照以下的圖片說明進行操作即可。<br><img src="/image/IT/20220330/3.png"><br><img src="/image/IT/20220330/4.png"><br><img src="/image/IT/20220330/5.png"></p>
+</li>
+</ol>
+<p>到這邊申請就告一段落了，接下來將目光轉移到Google app script當中。</p>
+<h1 id="免費建立一個API-推送服務"><a href="#免費建立一個API-推送服務" class="headerlink" title="免費建立一個API 推送服務"></a>免費建立一個API 推送服務</h1><ol>
+<li><p>接下來我們要透過一個免費的平台，讓它可以定時幫我們去呼叫Line Notify 去傳送訊息，首先我們先進入<a href="https://www.google.com/script/start/">Google App Script官網</a>並點選右上角的「Start Scripting Home」按鈕。<br><img src="/image/IT/20220330/6.png"></p>
+</li>
+<li><p>點選左上角的「新增專案」,系統就會生成一個專案檔給你了，如下圖。<br><img src="/image/IT/20220330/7.png"><br><img src="/image/IT/20220330/8.png"></p>
+</li>
+<li><p>為避免有些人不懂這些東西是什麼鬼東西，我們先依照下面流程操作一遍：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程式碼範例</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">firstFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title class_">Logger</span>.<span class="title function_">log</span>(<span class="string">&#x27;這是我的第一個方法！！！&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20220330/9.png"></p>
+</li>
+</ol>
+<p>執行後，有沒有發現比想像中的還要簡單呢？<br>接下來重頭戲來了！</p>
+<ol start="4">
+<li>直接上程式碼給大家使用</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> _key =<span class="string">&#x27;你剛剛複製的Line Notify 權杖&#x27;</span> <span class="comment">//line notify token</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 傳送line notify</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sendLineNotify</span>(<span class="params">message</span>)&#123;</span><br><span class="line">   <span class="title class_">UrlFetchApp</span>.<span class="title function_">fetch</span>(<span class="string">&#x27;https://notify-api.line.me/api/notify&#x27;</span>, &#123;</span><br><span class="line">        <span class="string">&#x27;headers&#x27;</span>: &#123;</span><br><span class="line">           <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Bearer &#x27;</span> + _key,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;payload&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;message&#x27;</span>:message</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 早上說你好</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">goodMorning</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">sendLineNotify</span>(<span class="string">&#x27;早安啊&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第次執行<strong>goodMorning</strong>這個方法時，系統會要求你開啟權限，基本也就如下圖所，一路點同意即可。<br><img src="/image/IT/20220330/10.png"><br><img src="/image/IT/20220330/11.png"><br><img src="/image/IT/20220330/12.png"><br><img src="/image/IT/20220330/13.png"></p>
+<ol start="5">
+<li>執行完成後你選擇的Line Notify就會傳送訊息到你指定的聊天群組當中了！<br><img src="/image/IT/20220330/14.png"></li>
+</ol>
+<h1 id="自動執行設定"><a href="#自動執行設定" class="headerlink" title="自動執行設定"></a>自動執行設定</h1><ol>
+<li>點選左邊的「觸發條件」，並新增觸發條件，執行方法中我們選擇<strong>goodMorning</strong>這個方法，並且依照圖片中的設定進行調整，那系統每天早上7點到8點之間，系統會自動向你說一聲早安（溫腥）。<br><img src="/image/IT/20220330/16.png"><br><img src="/image/IT/20220330/17.png"></li>
+</ol>
+<h2 id="需要注意事項！"><a href="#需要注意事項！" class="headerlink" title="需要注意事項！"></a><strong>需要注意事項！</strong></h2><p>如果你是點選1人以上的聊天群組的話，你就要邀情Line Notify到你的聊天群組當中，否則它是不會呼叫的！<br><img src="/image/IT/20220330/15.png"></p>
+<h1 id="下篇預告"><a href="#下篇預告" class="headerlink" title="下篇預告"></a>下篇預告</h1><p>下一篇會教大家使用Google雲端資料夾抓圖片發送，敬請期待～</p>
+]]></content>
+      <categories>
+        <category>技術分享</category>
+      </categories>
+      <tags>
+        <tag>google-app-script</tag>
+        <tag>Line</tag>
       </tags>
   </entry>
   <entry>

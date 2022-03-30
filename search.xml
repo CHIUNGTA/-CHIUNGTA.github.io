@@ -1,134 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Ubuntu安裝MySQL</title>
-    <url>/2020/07/27/Ubuntu%E5%AE%89%E8%A3%9DMySQL/</url>
-    <content><![CDATA[<p>&amp;#160; &amp;#160; &amp;#160; &amp;#160;本章節將會教您如何在虛擬機(Ubuntu)內，架設一個屬於自己的免費資料庫，並且利用DBeaver進行資料的基本操作與瀏覽。</p>
-<h1 id="安裝MySQL"><a href="#安裝MySQL" class="headerlink" title="安裝MySQL"></a>安裝MySQL</h1><p>請透過ssh連接到您的虛擬機上，並且輸入下列指令：<br>(安裝Mysql伺服器與客戶端的套件)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt-get install mysql-server</span><br><span class="line">$ sudo apt install mysql-client</span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20200727/1.PNG"></p>
-<p>若安裝完成後可輸入下列指令，查看MySQL是否安裝成功，若在成功的前提下應可看到下圖。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo netstat -tap | grep mysql</span><br></pre></td></tr></table></figure>
-
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/image/IT/20200727/2.PNG"></h2><h1 id="允許-MySQL-被遠端訪問"><a href="#允許-MySQL-被遠端訪問" class="headerlink" title="允許 MySQL 被遠端訪問"></a>允許 MySQL 被遠端訪問</h1><p>此處設定係方便Windows主機透過IP連接的方式，存取虛擬機中的MySQL資料庫，因此要設定MySQL 允許被遠端訪問。該操作需要透過文字編輯器針對config設定檔進行修改，因此先岔個提，介紹一下Vim。</p>
-<h3 id="Vim基本介紹與操作"><a href="#Vim基本介紹與操作" class="headerlink" title="Vim基本介紹與操作"></a>Vim基本介紹與操作</h3><p>Vim類似windows中的txt編輯器。<a href="https://zh.wikipedia.org/wiki/Vim">Vim</a>是由vi編輯器發展而來的一種文字編輯器，linux系統當中為相當常見的文字編輯器，在程式設計師中被大量使用(如同我們在python課時，使用vs code一樣)，它強調手不用離開鍵盤就可以操作，提供一種沉靜式的開發環境。<br><img src="/image/IT/20200727/3.png"></p>
-<p>首先輸入下列指令，安裝vim套件(記得要輸入Y)。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20200727/2-1.PNG"></p>
-<p>我們先練習一下如何使用vim進行文字編輯，我們先移到根目錄，並創建一個名為code的資料夾。<br>在圖中我們可以看到code資料夾。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> / <span class="comment">#移至根目錄</span></span><br><span class="line">$ sudo <span class="built_in">mkdir</span> code <span class="comment">#建立code資料夾</span></span><br><span class="line">$ <span class="built_in">ls</span> <span class="comment">#顯示當前路徑所有檔案與資料夾</span></span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20200727/4.png"></p>
-<p>確定有建立code資料夾後，我們移至code 資料夾中，建立一個.py檔試試看。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> code</span><br><span class="line">$ sudo vim hello.py</span><br></pre></td></tr></table></figure>
-<p>重頭戲來了，當打完上面的指令後應該會看到一片漆黑，如圖。<br><img src="/image/IT/20200727/5.png"><br>此時我們輸入i，畫面就會有所變化，此時我們就可以開始針對這個py檔進行編輯。<br><img src="/image/IT/20200727/6.png"></p>
-<p>此時再輸入一串python的hello world</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello world! Vim&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>輸入完成後，按下Esc鍵(鍵盤左上方那顆)，再輸入<a style="color:red">:wq</a>進行存檔。<br><img src="/image/IT/20200727/7.png"></p>
-<p>存檔完成後terminal會移至code資料夾中，我們再輸入下列指令執行python腳本，若正常情況下應該可以看到console中顯示「hello world! Vim」的字樣。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ls</span></span><br><span class="line">$ python3 hello.py</span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20200727/8.png"></p>
-<hr>
-<h1 id="回到主題-允許-MySQL-被遠端訪問-你的實體電腦"><a href="#回到主題-允許-MySQL-被遠端訪問-你的實體電腦" class="headerlink" title="回到主題 允許 MySQL 被遠端訪問 (你的實體電腦)"></a>回到主題 允許 MySQL 被遠端訪問 (你的實體電腦)</h1><h3 id="1-修改-mysql-cnf"><a href="#1-修改-mysql-cnf" class="headerlink" title="1.修改 mysql.cnf"></a>1.修改 mysql.cnf</h3><p>我們先移至到&#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d資料夾中，並且利用Vim將mysqld.cnf進行修改。進入之後我們要將bind-addres &#x3D; 127.0.0.1 的部分註解起來(前面打#字)，完成後一樣輸入<a style="color:red;">:wq</a>退出Vim。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /etc/mysql/mysql.conf.d</span><br><span class="line">$ sudo vim mysqld.cnf</span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20200727/9.png"><br><img src="/image/IT/20200727/10.png"></p>
-<hr>
-<h3 id="2-查看MySQL目前運行狀態與查看MySQL的帳密"><a href="#2-查看MySQL目前運行狀態與查看MySQL的帳密" class="headerlink" title="2.查看MySQL目前運行狀態與查看MySQL的帳密"></a>2.查看MySQL目前運行狀態與查看MySQL的帳密</h3><p>輸入下列指令，查看目前MySQL服務是否正在運行?</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo service mysql status</span><br></pre></td></tr></table></figure>
-<p>若是沒有正在執行，請再輸入下列指令，使MySQL資料庫重啟：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo service mysql restart </span><br></pre></td></tr></table></figure>
-<h3 id="3-登入MySQL新增使用者帳號"><a href="#3-登入MySQL新增使用者帳號" class="headerlink" title="3.登入MySQL新增使用者帳號"></a>3.登入MySQL新增使用者帳號</h3><p>接下來我們要進入MySQL建立新的使用者帳號，基於安全性的原因，故而不是使用root對外進行開放。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo mysql <span class="comment">#進入MySQL</span></span><br></pre></td></tr></table></figure>
-<p>若成功進入的話，應該可以看到下圖：<br><img src="/image/IT/20200727/11.png"></p>
-<p>接下來我們輸入下列指令，username是您想要設定的使用者名稱，password是此使用者帳號的密碼。<br>設置完成後我們再輸入exit退出MySQL。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;username&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;password&#x27;</span>; <span class="comment">--新增使用者</span></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;username&#x27;</span>@<span class="string">&#x27;%&#x27;</span> <span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION; <span class="comment">--給予最大管理權限</span></span><br><span class="line">EXIT;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="防火牆設定"><a href="#防火牆設定" class="headerlink" title="防火牆設定"></a>防火牆設定</h3><p>MySQL預設的<a style="color:red;"><a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E8%A8%8A%E5%9F%A0">通訊埠</a></a><a style="color :red ;"> (英文為PORT)</a>為3306，我們要設定防火牆開放port 3306供外部網路進行存取，請輸入下列指令。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt-get install ufw <span class="comment">#安裝防火牆</span></span><br><span class="line">$ sudo ufw allow 3306 <span class="comment">#開放port 3306</span></span><br><span class="line">$ sudo ufw <span class="built_in">enable</span> <span class="comment">#啟動防火牆</span></span><br><span class="line">$ sudo ufw status numbered <span class="comment">#查看目前防火牆規則</span></span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20200727/12.png"></p>
-<hr>
-<h3 id="下載資料庫管理工具-DBeaver"><a href="#下載資料庫管理工具-DBeaver" class="headerlink" title="下載資料庫管理工具(DBeaver)"></a>下載資料庫管理工具(DBeaver)</h3><p>老達在這邊推薦一款超好用的資料庫管理工具「<a href="https://zh.wikipedia.org/zh-tw/DBeaver">DBeaver</a>」，它的強大之處在於可以透過一套管理工具，連接多種不同類型的資料庫(如常見的Oracle、SQL Server、MySQL、SQLite等等)。首先我們先至<a href="https://dbeaver.io/download/">DBeaver官方網站</a>下載安裝檔，如果我們是用Windows系統的話，請點選紅框處進行下載。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/DBeaver_logo.svg/1024px-DBeaver_logo.svg.png"><br><img src="/image/IT/20200727/installdbeaver.png"></p>
-<hr>
-<h3 id="DBeaver-MySQL設定"><a href="#DBeaver-MySQL設定" class="headerlink" title="DBeaver MySQL設定"></a>DBeaver MySQL設定</h3><p>DBeaver的安裝流程老達就不詳細操作了，基本是無腦安裝。安裝完成後應該可以看到乾乾淨淨的操作頁面。點選左上角紅框處新建虛擬機MySQL的連接。<br><img src="/image/IT/20200727/dbeaver.png"></p>
-<p>在紅框處輸入mysql並按下enter搜尋，點選中間的MySQL+進行設定。<br><img src="/image/IT/20200727/13.png"><br>接下來輸入虛擬機ip，我們可以發現DBeaver預設已經代port 3306了，所以我們就不進行修改。並輸入我們剛剛設定的使用者名稱與密碼，並且設定Server Time Zone為Asia&#x2F;Taipei，設定好後按下右下角的Test Connection…。</p>
-<p><img src="/image/IT/20200727/14.png"><br><img src="/image/IT/20200727/15.png"><br>如果沒有看到上面的成功連接畫面，並且出現<a style="color:red;"><br>Public Key Retrieval is not allowed.</a>的錯誤字串時，請至裝置屬性的設定頁面將allowPublicKeyRetrieval設定為True，調整完成後再測試看看是否可以連接。<br><img src="/image/IT/20200727/16.png"></p>
-<hr>
-<p>下篇會分享如何將PTX資料匯入資料庫中，透過SQL指令進行處理與分析。</p>
+    <title>使用google-app-script建立免費的免費的Line通知功能(推文篇)</title>
+    <url>/2022/03/30/%E4%BD%BF%E7%94%A8google-app-script%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E7%9A%84%E5%85%8D%E8%B2%BB%E7%9A%84Line%E9%80%9A%E7%9F%A5%E5%8A%9F%E8%83%BD(%E6%8E%A8%E6%96%87%E7%AF%87)/</url>
+    <content><![CDATA[<p>從學校畢業出社會一段時間後，不知道大家有沒有一種感覺，就是有的沒有的Line工作群組會多的莫名其妙，然而在工作之餘還是需要休閒娛樂一下。因此我們公司私下建立了一個 <del>靠北上司</del> 抒發身心壓力的群組，專門給大家發一些有的沒有個搞笑圖。<br><img src="/image/IT/20220330/1.jpg"></p>
+<p>但是有在職場上工作的小夥伴就知道，這種群組是很危險的，一個擦槍走火(例如主管看到啥的)，就有可能造成不可挽回的遺憾；也有可能自己貼的一張梗圖，不小心使其他人的玻璃心碎掉，或是讓有心之人有了對號入座的機會。因此本魯建議使用Line notify發送梗圖，既方便又不會傷了大家的面子xd，因此接下來分上下兩篇介紹如何從google雲端資料夾中拿梗圖，並發送到Line群組中。</p>
+<h1 id="申請一個Line-Notify-Token"><a href="#申請一個Line-Notify-Token" class="headerlink" title="申請一個Line Notify Token"></a>申請一個Line Notify Token</h1><ol>
+<li><p>進入 <a href="https://notify-bot.line.me/zh_TW/">Line Notify 官網</a>並且點選右上角的登入按鈕。</p>
+</li>
+<li><p>登入你平常使用的Line帳號密碼，登入後點選右上角的帳號，並且點選個人頁面選項：<br><img src="/image/IT/20220330/2.png"></p>
+</li>
+<li><p>點選並進入頁面後，拉到最下面就可以看到「發行存取權杖」的按鈕，並按照以下的圖片說明進行操作即可。<br><img src="/image/IT/20220330/3.png"><br><img src="/image/IT/20220330/4.png"><br><img src="/image/IT/20220330/5.png"></p>
+</li>
+</ol>
+<p>到這邊申請就告一段落了，接下來將目光轉移到Google app script當中。</p>
+<h1 id="免費建立一個API-推送服務"><a href="#免費建立一個API-推送服務" class="headerlink" title="免費建立一個API 推送服務"></a>免費建立一個API 推送服務</h1><ol>
+<li><p>接下來我們要透過一個免費的平台，讓它可以定時幫我們去呼叫Line Notify 去傳送訊息，首先我們先進入<a href="https://www.google.com/script/start/">Google App Script官網</a>並點選右上角的「Start Scripting Home」按鈕。<br><img src="/image/IT/20220330/6.png"></p>
+</li>
+<li><p>點選左上角的「新增專案」,系統就會生成一個專案檔給你了，如下圖。<br><img src="/image/IT/20220330/7.png"><br><img src="/image/IT/20220330/8.png"></p>
+</li>
+<li><p>為避免有些人不懂這些東西是什麼鬼東西，我們先依照下面流程操作一遍：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程式碼範例</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">firstFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title class_">Logger</span>.<span class="title function_">log</span>(<span class="string">&#x27;這是我的第一個方法！！！&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20220330/9.png"></p>
+</li>
+</ol>
+<p>執行後，有沒有發現比想像中的還要簡單呢？<br>接下來重頭戲來了！</p>
+<ol start="4">
+<li>直接上程式碼給大家使用</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> _key =<span class="string">&#x27;你剛剛複製的Line Notify 權杖&#x27;</span> <span class="comment">//line notify token</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 傳送line notify</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sendLineNotify</span>(<span class="params">message</span>)&#123;</span><br><span class="line">   <span class="title class_">UrlFetchApp</span>.<span class="title function_">fetch</span>(<span class="string">&#x27;https://notify-api.line.me/api/notify&#x27;</span>, &#123;</span><br><span class="line">        <span class="string">&#x27;headers&#x27;</span>: &#123;</span><br><span class="line">           <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Bearer &#x27;</span> + _key,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;payload&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;message&#x27;</span>:message</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 早上說你好</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">goodMorning</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">sendLineNotify</span>(<span class="string">&#x27;早安啊&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第次執行<strong>goodMorning</strong>這個方法時，系統會要求你開啟權限，基本也就如下圖所，一路點同意即可。<br><img src="/image/IT/20220330/10.png"><br><img src="/image/IT/20220330/11.png"><br><img src="/image/IT/20220330/12.png"><br><img src="/image/IT/20220330/13.png"></p>
+<ol start="5">
+<li>執行完成後你選擇的Line Notify就會傳送訊息到你指定的聊天群組當中了！<br><img src="/image/IT/20220330/14.png"></li>
+</ol>
+<h1 id="自動執行設定"><a href="#自動執行設定" class="headerlink" title="自動執行設定"></a>自動執行設定</h1><ol>
+<li>點選左邊的「觸發條件」，並新增觸發條件，執行方法中我們選擇<strong>goodMorning</strong>這個方法，並且依照圖片中的設定進行調整，那系統每天早上7點到8點之間，系統會自動向你說一聲早安（溫腥）。<br><img src="/image/IT/20220330/16.png"><br><img src="/image/IT/20220330/17.png"></li>
+</ol>
+<h2 id="需要注意事項！"><a href="#需要注意事項！" class="headerlink" title="需要注意事項！"></a><strong>需要注意事項！</strong></h2><p>如果你是點選1人以上的聊天群組的話，你就要邀情Line Notify到你的聊天群組當中，否則它是不會呼叫的！<br><img src="/image/IT/20220330/15.png"></p>
+<h1 id="下篇預告"><a href="#下篇預告" class="headerlink" title="下篇預告"></a>下篇預告</h1><p>下一篇會教大家使用Google雲端資料夾抓圖片發送，敬請期待～</p>
 ]]></content>
       <categories>
         <category>技術分享</category>
       </categories>
       <tags>
-        <tag>ubuntu</tag>
-        <tag>MySQL</tag>
-        <tag>data base</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VMware 與 Ubuntu 基本安裝與設定</title>
-    <url>/2020/07/22/vmware-%E8%88%87-ubuntu-%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E5%AE%9A/</url>
-    <content><![CDATA[<p>&amp;#160; &amp;#160; &amp;#160; &amp;#160;這邊將會簡單與各位介紹如何在WINDOWS主機中安裝<a href="https://zh.wikipedia.org/wiki/%E8%99%9B%E6%93%AC%E6%A9%9F%E5%99%A8">虛擬機器</a>去運行不同的OS執行系統，譬如說透過一台實體電腦，同時運行多種不同的作業系統，以達到降低硬體成本的目的(一種一魚多吃的概念)。</p>
-<h1 id="VMbware虛擬機器軟體"><a href="#VMbware虛擬機器軟體" class="headerlink" title="VMbware虛擬機器軟體"></a>VMbware虛擬機器軟體</h1><p>業界主流使用的虛擬機器軟體大多為微軟所提供的<a href="https://zh.wikipedia.org/wiki/Hyper-V">Hyper-V</a>、甲骨公司推出的<a href="https://zh.wikipedia.org/wiki/VirtualBox">VirtualBox</a>與今天的主角：</p>
-<p style="color:red;font-size:45px;"     align="center">VMware</p>
-
-<p>&amp;#160; &amp;#160; &amp;#160; &amp;#160;其實老達我本身是不怎麼使用虛擬機器的，主要原因在於我有一台<a href="https://zh.wikipedia.org/wiki/%E6%A0%91%E8%8E%93%E6%B4%BE">樹梅派</a>與一台於大學入學時購買的平價筆記型電腦，機齡目前約有7年左右。由於獨立顯卡掛掉，於是老達秉持著硬頸的客家精神，給電腦灌了Ubuntu作業系統當作lab機使用。<br>或許有人會問，為什麼要在Windows作業系統上使用VMeare而不是使用微軟爸爸的親兒子Hyper-V，主要原因有2個，一為Hyper-V只能在教育版、企業版與專業版Windows上面使用，一般家庭的版本是無法使用的。二為近期有利用blueStacks這個Android虛擬軟體安裝開言英語學習(當廣播聽..)，並發現blueStacks與Hyper-V會相互衝突，因此也沒有特別研究就直接轉而使用VMware了。<br><img src="/image/IT/20200722/072501.png"></p>
-<h2 id="VMware下載-amp-Ubuntu-下載"><a href="#VMware下載-amp-Ubuntu-下載" class="headerlink" title="VMware下載 &amp; Ubuntu 下載"></a>VMware下載 &amp; Ubuntu 下載</h2><p>請至<a href="https://www.vmware.com/tw/products/workstation-player/workstation-player-evaluation.html">VMware官方網站</a>進行下載，下載完成之後即可開始進行安裝作業。<br><img src="/image/IT/20200722/072502.png"></p>
-<p>在安裝期間也需要至<a href="https://ubuntu.com/download/desktop">Ubuntu官網</a>下載ISO檔，後續安裝虛擬組機會使用到。<br><img src="/image/IT/20200722/072502-1.png"></p>
-<p>請自己在C槽中新增VM資料夾，並在VM資料夾中新增OS與VMUbuntu兩個資料夾，並將ubuntu-20.04-desktop-amd64.iso這個檔案移到OS資料夾中。<br><img src="/image/IT/20200722/072502-2.png"></p>
-<h2 id="VMware安裝"><a href="#VMware安裝" class="headerlink" title="VMware安裝"></a>VMware安裝</h2><p>VMware安裝基本屬於無腦安裝，僅有最後面的一個步驟必須設定您想要切多少實體機器的效能(CPU、RAM與儲存空間等等設定)。<br>1.由於我們是採用免費試用本，因此只要勾選上面的選項即可，不需要刻意填寫下方產品驗證。<br><img src="/image/IT/20200722/072503.png"></p>
-<hr>
-<p>2.完成安裝後會出現下面的圖示，再點選紅框處開始建立新的虛擬主機。<br><img src="/image/IT/20200722/072503-1.png"></p>
-<hr>
-<p>3.選取虛擬機的檔案執行位置(類似本機的c槽)，我們按下紅圈處，將路徑指向剛剛新增的VMUbuntu資料夾。<br><img src="/image/IT/20200722/072504.png"><br><img src="/image/IT/20200722/072505.png"></p>
-<hr>
-<p>3.選擇要切多少硬碟空間給虛擬機器使用。<br><img src="/image/IT/20200722/072506.png"></p>
-<hr>
-<p>4.選擇Ubuntu Iso檔供虛擬機器運行(選取剛剛丟進OS資料夾中的ISO檔案)。<br><img src="/image/IT/20200722/072507.png"><br><img src="/image/IT/20200722/072508.png"></p>
-<hr>
-<p>5.設定主機名稱(再系統中的名子)與使用者名稱與密碼(這兩個很重要，設定好後請務必牢記)<br><img src="/image/IT/20200722/072509.png"></p>
-<hr>
-<p>6.這邊可以調整您想要的硬體配置，可點選紅框處設置更加細緻化的調整(記憶體量、可用CPU核心數….)<br><img src="/image/IT/20200722/072510.png"><br><img src="/image/IT/20200722/072510-1.png"></p>
-<hr>
-<p>7.點選下一步後VMware會開始自己安裝Ubuntu，再安裝完成之後，使用者可輸入自己設定的密碼進入Ubuntu操作平台。<br><img src="/image/IT/20200722/072511.png"><br><img src="/image/IT/20200722/072512.png"></p>
-<hr>
-<p>8.進入Ubuntu後，使用者依照下圖順序將「命令提示字元」打開<br><img src="/image/IT/20200722/072513.png"></p>
-<hr>
-<p>9.接下來請打下列指令更新Ubuntu驅動與packages，第一次可能會花比較長的時間進行更新。</p>
-<blockquote class="blockquote-center"><p>Ubuntu 軟體更新指令 </p>
-</blockquote>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
-
-<blockquote class="blockquote-center"><p>安裝SSH 套件 </p>
-</blockquote>
-<p>安裝此套件才可以使本機透過<a href="https://zh.wikipedia.org/wiki/Secure_Shell">SSH</a>網路傳輸協議,與虛擬機進行溝通。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt-get install openssh-server</span><br><span class="line">$ sudo systemctl status ssh.service </span><br><span class="line">$ sudo systemctl restart ssh.service</span><br></pre></td></tr></table></figure>
-
-<blockquote class="blockquote-center"><p>安裝net-tools 套件 與 查詢虛擬機IP位置 </p>
-</blockquote>
-<p>接下來我們要透過ifconfig 指令查看虛擬機的ip位置，由於ifconfig在ubuntu預設是沒有安裝的，因此要先打下列指令進行安裝。(指令中的sudo 係指管理員權限 )<br>安裝完成後應該可以看到下圖的ip資訊。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install net-tools</span><br><span class="line">$ ifconfig</span><br></pre></td></tr></table></figure>
-
-<p><img src="/image/IT/20200722/072514.png"></p>
-<hr>
-<p>10.接下來我們可以透過PuTTY軟體進行SSH連結，進而透過指令的方式控制虛擬機器。<br>但老達比較懶惰，直接使用Windows命令提示字元內建的ssh工具進行操控，我們只要進行一些設定即可使用。<br>詳細的設定流程就請各位參考其他大大的文章了<a href="https://kheresy.wordpress.com/2017/12/14/windows-begin-to-provide-ssh-client-and-server/">連結</a>。</p>
-<p>openSSH設定好就可以透過WIN+S鍵，輸入CMD叫出命令提示字元後輸入ssh連接指令。</p>
-<p style="color:red;" >user = 您Ubuntu的使用者名稱</p>
-<p style="color:red;">虛擬機IP = 剛剛ifconfig 查出的ip位置</p>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh user@虛擬機IP</span><br></pre></td></tr></table></figure>
-<p>如果有成功打到虛擬機器的話，會看到下面的提示，詢問你是否確定是否要連接，輸入yes。<br><img src="/image/IT/20200722/1.PNG"><br>後續會詢問你密碼是多少，如果輸入正確的話，就可以直接登入虛擬機器進行操作了。<br><img src="/image/IT/20200722/2.PNG"><br><img src="/image/IT/20200722/3.PNG"></p>
-<p>如果想要登出的話，請輸入下列指令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-
-<p>下篇文章將分享如何在虛擬機上安裝Mysql，並存入PTX公共運輸公車站牌相關資料。</p>
-<hr>
-]]></content>
-      <categories>
-        <category>技術分享</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>vmware</tag>
+        <tag>Line</tag>
+        <tag>google-app-script</tag>
       </tags>
   </entry>
   <entry>
@@ -164,45 +80,9 @@ Console.ReadLine() ;
       </tags>
   </entry>
   <entry>
-    <title>將PTX資料透過Excel與DBeaver匯入至資料庫中</title>
-    <url>/2020/08/03/%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD/</url>
-    <content><![CDATA[<p>&amp;#160; &amp;#160; 本章節將會教您如何從PTX服務平台<a href="https://ptx.transportdata.tw/PTX/">公共運輸整合資訊流通服務平台</a>，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。</p>
-<h1 id="PTX資料撈取與儲存"><a href="#PTX資料撈取與儲存" class="headerlink" title="PTX資料撈取與儲存"></a>PTX資料撈取與儲存</h1><h2 id="PTX-API-服務"><a href="#PTX-API-服務" class="headerlink" title="PTX API 服務"></a>PTX API 服務</h2><p>首先我們先進入<a href="https://ptx.transportdata.tw/PTX/">PTX官方網站</a>，點選紅框處的「線上API說明」。<br><img src="/image/IT/20200803/01.png"></p>
-<p>點選後我們可以看到有許多API，可以提供給我們進行撈取使用，這邊就先以公路客運公車站牌為例，點選<a href="https://ptx.transportdata.tw/MOTC#!/InterCityBus/InterCityBusApi_StopOfRoute">GET &#x2F;v2&#x2F;Bus&#x2F;StopOfRoute&#x2F;InterCity 取得公路客運路線與站牌資料</a>，可以看到這個API有提供許多可供篩選的選項，例如只要前50筆資料或是只要某縣市範圍的公車站牌資料等等…<br>我們將滑鼠移到<a style="color:red">$format</a>，點選XML格式並按下左下角的「Try it out!」。<br><img src="/image/IT/20200803/02.jpg"></p>
-<p>點開後我們可以看到PTX幫 <a href="%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD.md">將PTX資料輸入至資料庫中.md</a> 我們預設帶出30筆公車站牌資料，在URI中可以觀察到<a style="color:red">top&#x3D;30</a>，意思是我們只要取前30筆資料即可；<a style="color:red">format&#x3D;JSON</a>的意思則是要求PTX將我們要查詢的資料依照<a href="https://zh.wikipedia.org/wiki/XML">XML</a>或是<a href="https://zh.wikipedia.org/wiki/JSON">JSON</a>的資料格式回傳，方便我們後續針對資料進行處理。我們先複製紅框處的Request URI，並且打開EXCEL。<br><img src="/image/IT/20200803/03.jpg"></p>
-<h2 id="XML資料匯入Excel"><a href="#XML資料匯入Excel" class="headerlink" title="XML資料匯入Excel"></a>XML資料匯入Excel</h2><p>打開Excel後點選「資料」→「取得外部資料」→「從其他來源」→「從XML資料匯入」，然後將剛剛複製下列的URI貼至檔案名稱並按「開啟」。</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/InterCity?$top=30&amp;$format=XML</span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20200803/04.png"><br><img src="/image/IT/20200803/05.jpg"><br>過程中Excel會問你XML資料結構與資料匯入位置等問題，我們直接按「確定」就可以了。<br><img src="/image/IT/20200803/06.jpg"><br><img src="/image/IT/20200803/07.jpg"></p>
-<p>過一段時間後，Excel會自動透過REST API從PTX中撈取30條公路客運站牌資料，並且將其匯入活頁簿當中。如果我們想要撈取<a style="color:red">全部的公車站牌資料</a>，則須將URI中的top&#x3D;30刪除，改成下列網址，但由於資料量較為龐大，所以可能撈取的時間也會相對較久。<a style="color:red">公車站牌資料撈取完成後，將Excel以CSV的格式儲存於桌面中，待下一步匯入使用。</a></p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/InterCity?$format=XML</span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20200803/08.jpg"></p>
-<h1 id="Csv資料匯入MySQL中"><a href="#Csv資料匯入MySQL中" class="headerlink" title="Csv資料匯入MySQL中"></a>Csv資料匯入MySQL中</h1><h2 id="DBeaver-CSV-Database"><a href="#DBeaver-CSV-Database" class="headerlink" title="DBeaver CSV Database"></a>DBeaver CSV Database</h2><p>打開DBeaver這個SQL Client軟體，並且新增新的資料庫，這邊選擇CSV作為資料庫類型。<br><img src="/image/IT/20200803/09.jpg"><br>點選Browse，選擇桌面作為路徑，接著點選Test Connection測試該路徑中是否有相對應的資料，若確任沒有問題後點選完成。<br><img src="/image/IT/20200803/10.jpg"></p>
-<p>此時回到資料庫進行查看，可以看到一個名為CSV - Desktop的資料庫，點開後打開資料表，在資料表中可以看到Stop資料表。對Stop資料表按右鍵，點選「在SQL Console中查看資料」(中英文有所差異)，如果搜尋出來時發現中文為亂碼的狀態，我們透過記事本將Stop.csv檔案打開，看右下角的編碼格式，若是ANSI則另存新檔並挑選UTF-8格式。<br><img src="/image/IT/20200803/11.jpg"><br><img src="/image/IT/20200803/12.jpg"></p>
-<p>上述操作完成後，我們就可以透過SQL語法正常操作公路客運的資料，例如…</p>
-<p>透過條件式篩選基隆地區的公車站牌。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Stop <span class="keyword">WHERE</span> LocationCityCode <span class="operator">=</span><span class="string">&#x27;KEE&#x27;</span> ;</span><br></pre></td></tr></table></figure>
-<p>或是統計基隆地區有多少站牌。</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> Stop <span class="keyword">WHERE</span> LocationCityCode <span class="operator">=</span><span class="string">&#x27;KEE&#x27;</span> ;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20200803/13.jpg"></p>
-<h2 id="將CSV-Database匯入MySQL"><a href="#將CSV-Database匯入MySQL" class="headerlink" title="將CSV Database匯入MySQL"></a>將CSV Database匯入MySQL</h2><p>對Stop點選右鍵，並按輸出資料。<br><img src="/image/IT/20200803/14.jpg"><br>點選Database作為輸出目標。<br><img src="/image/IT/20200803/15.jpg"><br>點選以前新增的Ubuntu虛擬機與資料庫。<br><img src="/image/IT/20200803/16.jpg"><br><img src="/image/IT/20200803/17.jpg"></p>
-<p>點選好目標資料庫後，目標資料夾會呈現「?」，此時點選左下角的Auto assign，正常情況下會預設與資料來源表相同名稱(Stop);<br>接下來點選Columns..來調整一下每個欄位的字串長度。<br><img src="/image/IT/20200803/18.jpg"><br>將紅框處的string(32767)更改為string(100)，UpdateTime欄位的屬性改為Datetime，全部修改完成後點選OK。<br><img src="/image/IT/20200803/18-1.jpg"></p>
-<p>當你看到這個畫面時，表示DBeaver準備好開始幫你從CSV資料庫複製資料至MySQL當中，Start大力地給他按下去。<br><img src="/image/IT/20200803/19.jpg"><br><img src="/image/IT/20200803/20.jpg"></p>
-<p>若運行完成後，csv table的資料就會複製到MySQL資料庫內，未來若專題或是工作上遇到資料量龐大的CSV檔，EXCEL無法處理時，都可以透過這個方法進行資料上的處理。<br><img src="/image/IT/20200803/21.jpg"></p>
-]]></content>
-      <categories>
-        <category>技術分享</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>PTX</tag>
-        <tag>database</tag>
-        <tag>Excel</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>更新zero-ssl憑證於IIS平台</title>
     <url>/2021/10/16/%E6%9B%B4%E6%96%B0zero-ssl%E6%86%91%E8%AD%89%E6%96%BCIIS%E5%B9%B3%E5%8F%B0/</url>
-    <content><![CDATA[<p>&amp;#160; &amp;#160; 今天剛好要寫一份更新SSL的流程文件，所以就順便寫在這個部落格中避免將來忘記。整個更新的步驟分為兩項，第一項為更新申請新的SSl憑證，第二則是將改憑證設定為IIS中，以下範例皆是基於<a href="https://manage.sslforfree.com/login?u=https://manage.sslforfree.com/dashboard">sslforfree.com</a>網站進行申請的，因此下列說明也是在該基礎上進行講解。</p>
+    <content><![CDATA[<p>今天剛好要寫一份更新SSL的流程文件，所以就順便寫在這個部落格中避免將來忘記。整個更新的步驟分為兩項，第一項為更新申請新的SSl憑證，第二則是將改憑證設定為IIS中，以下範例皆是基於<a href="https://manage.sslforfree.com/login?u=https://manage.sslforfree.com/dashboard">sslforfree.com</a>網站進行申請的，因此下列說明也是在該基礎上進行講解。</p>
 <h1 id="更新SSL-憑證"><a href="#更新SSL-憑證" class="headerlink" title="更新SSL 憑證"></a>更新SSL 憑證</h1><ol>
 <li><p>登入<a href="https://manage.sslforfree.com/login?u=https://manage.sslforfree.com/dashboard">sslforfree.com</a>操作儀表板中。<br><img src="/image/IT/20211016/01.png"></p>
 </li>
@@ -245,7 +125,7 @@ Console.ReadLine() ;
   <entry>
     <title>輕鬆建立免費資料庫與RESTful-API服務-儲存篇</title>
     <url>/2021/05/22/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful-API%E6%9C%8D%E5%8B%99-%E5%84%B2%E5%AD%98%E7%AF%87/</url>
-    <content><![CDATA[<p>&amp;#160; &amp;#160; 接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。</p>
+    <content><![CDATA[<p>接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。</p>
 <h1 id="撰寫資料接口"><a href="#撰寫資料接口" class="headerlink" title="撰寫資料接口"></a>撰寫資料接口</h1><p>同樣使用上篇所使用的Google試算表，使用GAS撰寫接收資料使用的接口，撰寫完成後記得要進行發布。<br>程式碼如下:</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 接收資料接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">doPost</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">ContentService</span>.<span class="title function_">createTextOutput</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(e))</span><br><span class="line">                         .<span class="title function_">setMimeType</span>(<span class="title class_">ContentService</span>.<span class="property">MimeType</span>.<span class="property">JSON</span>); <span class="comment">//將傳送至該方法中的參數物件，轉為JSON 字串吐回</span></span><br><span class="line">  &#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">   <span class="keyword">return</span> err</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -295,9 +175,45 @@ Console.ReadLine() ;
       </tags>
   </entry>
   <entry>
+    <title>將PTX資料透過Excel與DBeaver匯入至資料庫中</title>
+    <url>/2020/08/03/%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD/</url>
+    <content><![CDATA[<p>本章節將會教您如何從PTX服務平台<a href="https://ptx.transportdata.tw/PTX/">公共運輸整合資訊流通服務平台</a>，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。</p>
+<h1 id="PTX資料撈取與儲存"><a href="#PTX資料撈取與儲存" class="headerlink" title="PTX資料撈取與儲存"></a>PTX資料撈取與儲存</h1><h2 id="PTX-API-服務"><a href="#PTX-API-服務" class="headerlink" title="PTX API 服務"></a>PTX API 服務</h2><p>首先我們先進入<a href="https://ptx.transportdata.tw/PTX/">PTX官方網站</a>，點選紅框處的「線上API說明」。<br><img src="/image/IT/20200803/01.png"></p>
+<p>點選後我們可以看到有許多API，可以提供給我們進行撈取使用，這邊就先以公路客運公車站牌為例，點選<a href="https://ptx.transportdata.tw/MOTC#!/InterCityBus/InterCityBusApi_StopOfRoute">GET &#x2F;v2&#x2F;Bus&#x2F;StopOfRoute&#x2F;InterCity 取得公路客運路線與站牌資料</a>，可以看到這個API有提供許多可供篩選的選項，例如只要前50筆資料或是只要某縣市範圍的公車站牌資料等等…<br>我們將滑鼠移到<a style="color:red">$format</a>，點選XML格式並按下左下角的「Try it out!」。<br><img src="/image/IT/20200803/02.jpg"></p>
+<p>點開後我們可以看到PTX幫 <a href="%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD.md">將PTX資料輸入至資料庫中.md</a> 我們預設帶出30筆公車站牌資料，在URI中可以觀察到<a style="color:red">top&#x3D;30</a>，意思是我們只要取前30筆資料即可；<a style="color:red">format&#x3D;JSON</a>的意思則是要求PTX將我們要查詢的資料依照<a href="https://zh.wikipedia.org/wiki/XML">XML</a>或是<a href="https://zh.wikipedia.org/wiki/JSON">JSON</a>的資料格式回傳，方便我們後續針對資料進行處理。我們先複製紅框處的Request URI，並且打開EXCEL。<br><img src="/image/IT/20200803/03.jpg"></p>
+<h2 id="XML資料匯入Excel"><a href="#XML資料匯入Excel" class="headerlink" title="XML資料匯入Excel"></a>XML資料匯入Excel</h2><p>打開Excel後點選「資料」→「取得外部資料」→「從其他來源」→「從XML資料匯入」，然後將剛剛複製下列的URI貼至檔案名稱並按「開啟」。</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/InterCity?$top=30&amp;$format=XML</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200803/04.png"><br><img src="/image/IT/20200803/05.jpg"><br>過程中Excel會問你XML資料結構與資料匯入位置等問題，我們直接按「確定」就可以了。<br><img src="/image/IT/20200803/06.jpg"><br><img src="/image/IT/20200803/07.jpg"></p>
+<p>過一段時間後，Excel會自動透過REST API從PTX中撈取30條公路客運站牌資料，並且將其匯入活頁簿當中。如果我們想要撈取<a style="color:red">全部的公車站牌資料</a>，則須將URI中的top&#x3D;30刪除，改成下列網址，但由於資料量較為龐大，所以可能撈取的時間也會相對較久。<a style="color:red">公車站牌資料撈取完成後，將Excel以CSV的格式儲存於桌面中，待下一步匯入使用。</a></p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://ptx.transportdata.tw/MOTC/v2/Bus/StopOfRoute/InterCity?$format=XML</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200803/08.jpg"></p>
+<h1 id="Csv資料匯入MySQL中"><a href="#Csv資料匯入MySQL中" class="headerlink" title="Csv資料匯入MySQL中"></a>Csv資料匯入MySQL中</h1><h2 id="DBeaver-CSV-Database"><a href="#DBeaver-CSV-Database" class="headerlink" title="DBeaver CSV Database"></a>DBeaver CSV Database</h2><p>打開DBeaver這個SQL Client軟體，並且新增新的資料庫，這邊選擇CSV作為資料庫類型。<br><img src="/image/IT/20200803/09.jpg"><br>點選Browse，選擇桌面作為路徑，接著點選Test Connection測試該路徑中是否有相對應的資料，若確任沒有問題後點選完成。<br><img src="/image/IT/20200803/10.jpg"></p>
+<p>此時回到資料庫進行查看，可以看到一個名為CSV - Desktop的資料庫，點開後打開資料表，在資料表中可以看到Stop資料表。對Stop資料表按右鍵，點選「在SQL Console中查看資料」(中英文有所差異)，如果搜尋出來時發現中文為亂碼的狀態，我們透過記事本將Stop.csv檔案打開，看右下角的編碼格式，若是ANSI則另存新檔並挑選UTF-8格式。<br><img src="/image/IT/20200803/11.jpg"><br><img src="/image/IT/20200803/12.jpg"></p>
+<p>上述操作完成後，我們就可以透過SQL語法正常操作公路客運的資料，例如…</p>
+<p>透過條件式篩選基隆地區的公車站牌。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> Stop <span class="keyword">WHERE</span> LocationCityCode <span class="operator">=</span><span class="string">&#x27;KEE&#x27;</span> ;</span><br></pre></td></tr></table></figure>
+<p>或是統計基隆地區有多少站牌。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">FROM</span> Stop <span class="keyword">WHERE</span> LocationCityCode <span class="operator">=</span><span class="string">&#x27;KEE&#x27;</span> ;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200803/13.jpg"></p>
+<h2 id="將CSV-Database匯入MySQL"><a href="#將CSV-Database匯入MySQL" class="headerlink" title="將CSV Database匯入MySQL"></a>將CSV Database匯入MySQL</h2><p>對Stop點選右鍵，並按輸出資料。<br><img src="/image/IT/20200803/14.jpg"><br>點選Database作為輸出目標。<br><img src="/image/IT/20200803/15.jpg"><br>點選以前新增的Ubuntu虛擬機與資料庫。<br><img src="/image/IT/20200803/16.jpg"><br><img src="/image/IT/20200803/17.jpg"></p>
+<p>點選好目標資料庫後，目標資料夾會呈現「?」，此時點選左下角的Auto assign，正常情況下會預設與資料來源表相同名稱(Stop);<br>接下來點選Columns..來調整一下每個欄位的字串長度。<br><img src="/image/IT/20200803/18.jpg"><br>將紅框處的string(32767)更改為string(100)，UpdateTime欄位的屬性改為Datetime，全部修改完成後點選OK。<br><img src="/image/IT/20200803/18-1.jpg"></p>
+<p>當你看到這個畫面時，表示DBeaver準備好開始幫你從CSV資料庫複製資料至MySQL當中，Start大力地給他按下去。<br><img src="/image/IT/20200803/19.jpg"><br><img src="/image/IT/20200803/20.jpg"></p>
+<p>若運行完成後，csv table的資料就會複製到MySQL資料庫內，未來若專題或是工作上遇到資料量龐大的CSV檔，EXCEL無法處理時，都可以透過這個方法進行資料上的處理。<br><img src="/image/IT/20200803/21.jpg"></p>
+]]></content>
+      <categories>
+        <category>技術分享</category>
+      </categories>
+      <tags>
+        <tag>PTX</tag>
+        <tag>MySQL</tag>
+        <tag>database</tag>
+        <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>輕鬆建立免費資料庫與RESTful-API服務</title>
     <url>/2021/04/26/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful%E6%9C%8D%E5%8B%99/</url>
-    <content><![CDATA[<p>&amp;#160; &amp;#160; 在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至<strong>外網環境</strong>時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用<a href="https://cloud.google.com/appengine/?hl=zh-tw&utm_source=google&utm_medium=cpc&utm_campaign=japac-TW-all-zh-dr-bkws-all-super-trial-e-dr-1009882&utm_content=text-ad-none-none-DEV_c-CRE_437849980448-ADGP_Hybrid%20%7C%20BKWS%20-%20EXA%20%7C%20Txt%20~%20Compute%20~%20App%20Engine_app%20engine-google%20app%20engine-en-KWID_43700031884576212-kwd-5245655962&userloc_9040380-network_g&utm_term=KW_google%20app%20engine&gclid=Cj0KCQjwppSEBhCGARIsANIs4p6ZQAX0vDAhrdm0kmcdS9sfNnbAw5Hzxf2i8N1Fr2DXXI2YOEyDblcaAkjVEALw_wcB&gclsrc=aw.ds">Google app Engine</a>這類的應用程式代管平台，這對於只是要單純確認前端程式是否有誤的新手小白來說過於麻煩，因此下列將利用Google apps script，建立簡易型的資料存取API 服務。</p>
+    <content><![CDATA[<p>在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至<strong>外網環境</strong>時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用<a href="https://cloud.google.com/appengine/?hl=zh-tw&utm_source=google&utm_medium=cpc&utm_campaign=japac-TW-all-zh-dr-bkws-all-super-trial-e-dr-1009882&utm_content=text-ad-none-none-DEV_c-CRE_437849980448-ADGP_Hybrid%20%7C%20BKWS%20-%20EXA%20%7C%20Txt%20~%20Compute%20~%20App%20Engine_app%20engine-google%20app%20engine-en-KWID_43700031884576212-kwd-5245655962&userloc_9040380-network_g&utm_term=KW_google%20app%20engine&gclid=Cj0KCQjwppSEBhCGARIsANIs4p6ZQAX0vDAhrdm0kmcdS9sfNnbAw5Hzxf2i8N1Fr2DXXI2YOEyDblcaAkjVEALw_wcB&gclsrc=aw.ds">Google app Engine</a>這類的應用程式代管平台，這對於只是要單純確認前端程式是否有誤的新手小白來說過於麻煩，因此下列將利用Google apps script，建立簡易型的資料存取API 服務。</p>
 <h1 id="什麼是Google-apps-script"><a href="#什麼是Google-apps-script" class="headerlink" title="什麼是Google apps script ?"></a>什麼是Google apps script ?</h1><p><img src="https://miro.medium.com/max/996/1*J6Qm1Gr3RaG1oVPW5v4-0Q.png"></p>
 <p>簡單來說就是Google透過基於javascript的語法，將Google家中多數的服務進行串聯，提供使用者進行<strong>客製化</strong>的服務使用。目前在使用上多為免費，雖說在呼叫次數上有額度限制，但對於一般非商業使用者是綽綽有餘的。</p>
 <h1 id="如何開始"><a href="#如何開始" class="headerlink" title="如何開始?"></a>如何開始?</h1><h2 id="建立Google試算表"><a href="#建立Google試算表" class="headerlink" title="建立Google試算表"></a>建立Google試算表</h2><ol>
@@ -385,6 +301,137 @@ Console.ReadLine() ;
       </categories>
       <tags>
         <tag>google-app-script</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VMware 與 Ubuntu 基本安裝與設定</title>
+    <url>/2020/07/22/vmware-%E8%88%87-ubuntu-%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%9D%E8%88%87%E8%A8%AD%E5%AE%9A/</url>
+    <content><![CDATA[<p>這邊將會簡單與各位介紹如何在WINDOWS主機中安裝<a href="https://zh.wikipedia.org/wiki/%E8%99%9B%E6%93%AC%E6%A9%9F%E5%99%A8">虛擬機器</a>去運行不同的OS執行系統，譬如說透過一台實體電腦，同時運行多種不同的作業系統，以達到降低硬體成本的目的(一種一魚多吃的概念)。</p>
+<h1 id="VMbware虛擬機器軟體"><a href="#VMbware虛擬機器軟體" class="headerlink" title="VMbware虛擬機器軟體"></a>VMbware虛擬機器軟體</h1><p>業界主流使用的虛擬機器軟體大多為微軟所提供的<a href="https://zh.wikipedia.org/wiki/Hyper-V">Hyper-V</a>、甲骨公司推出的<a href="https://zh.wikipedia.org/wiki/VirtualBox">VirtualBox</a>與今天的主角：</p>
+<p style="color:red;font-size:45px;"     align="center">VMware</p>
+
+<p>&amp;#160; &amp;#160; &amp;#160; &amp;#160;其實老達我本身是不怎麼使用虛擬機器的，主要原因在於我有一台<a href="https://zh.wikipedia.org/wiki/%E6%A0%91%E8%8E%93%E6%B4%BE">樹梅派</a>與一台於大學入學時購買的平價筆記型電腦，機齡目前約有7年左右。由於獨立顯卡掛掉，於是老達秉持著硬頸的客家精神，給電腦灌了Ubuntu作業系統當作lab機使用。<br>或許有人會問，為什麼要在Windows作業系統上使用VMeare而不是使用微軟爸爸的親兒子Hyper-V，主要原因有2個，一為Hyper-V只能在教育版、企業版與專業版Windows上面使用，一般家庭的版本是無法使用的。二為近期有利用blueStacks這個Android虛擬軟體安裝開言英語學習(當廣播聽..)，並發現blueStacks與Hyper-V會相互衝突，因此也沒有特別研究就直接轉而使用VMware了。<br><img src="/image/IT/20200722/072501.png"></p>
+<h2 id="VMware下載-amp-Ubuntu-下載"><a href="#VMware下載-amp-Ubuntu-下載" class="headerlink" title="VMware下載 &amp; Ubuntu 下載"></a>VMware下載 &amp; Ubuntu 下載</h2><p>請至<a href="https://www.vmware.com/tw/products/workstation-player/workstation-player-evaluation.html">VMware官方網站</a>進行下載，下載完成之後即可開始進行安裝作業。<br><img src="/image/IT/20200722/072502.png"></p>
+<p>在安裝期間也需要至<a href="https://ubuntu.com/download/desktop">Ubuntu官網</a>下載ISO檔，後續安裝虛擬組機會使用到。<br><img src="/image/IT/20200722/072502-1.png"></p>
+<p>請自己在C槽中新增VM資料夾，並在VM資料夾中新增OS與VMUbuntu兩個資料夾，並將ubuntu-20.04-desktop-amd64.iso這個檔案移到OS資料夾中。<br><img src="/image/IT/20200722/072502-2.png"></p>
+<h2 id="VMware安裝"><a href="#VMware安裝" class="headerlink" title="VMware安裝"></a>VMware安裝</h2><p>VMware安裝基本屬於無腦安裝，僅有最後面的一個步驟必須設定您想要切多少實體機器的效能(CPU、RAM與儲存空間等等設定)。<br>1.由於我們是採用免費試用本，因此只要勾選上面的選項即可，不需要刻意填寫下方產品驗證。<br><img src="/image/IT/20200722/072503.png"></p>
+<hr>
+<p>2.完成安裝後會出現下面的圖示，再點選紅框處開始建立新的虛擬主機。<br><img src="/image/IT/20200722/072503-1.png"></p>
+<hr>
+<p>3.選取虛擬機的檔案執行位置(類似本機的c槽)，我們按下紅圈處，將路徑指向剛剛新增的VMUbuntu資料夾。<br><img src="/image/IT/20200722/072504.png"><br><img src="/image/IT/20200722/072505.png"></p>
+<hr>
+<p>3.選擇要切多少硬碟空間給虛擬機器使用。<br><img src="/image/IT/20200722/072506.png"></p>
+<hr>
+<p>4.選擇Ubuntu Iso檔供虛擬機器運行(選取剛剛丟進OS資料夾中的ISO檔案)。<br><img src="/image/IT/20200722/072507.png"><br><img src="/image/IT/20200722/072508.png"></p>
+<hr>
+<p>5.設定主機名稱(再系統中的名子)與使用者名稱與密碼(這兩個很重要，設定好後請務必牢記)<br><img src="/image/IT/20200722/072509.png"></p>
+<hr>
+<p>6.這邊可以調整您想要的硬體配置，可點選紅框處設置更加細緻化的調整(記憶體量、可用CPU核心數….)<br><img src="/image/IT/20200722/072510.png"><br><img src="/image/IT/20200722/072510-1.png"></p>
+<hr>
+<p>7.點選下一步後VMware會開始自己安裝Ubuntu，再安裝完成之後，使用者可輸入自己設定的密碼進入Ubuntu操作平台。<br><img src="/image/IT/20200722/072511.png"><br><img src="/image/IT/20200722/072512.png"></p>
+<hr>
+<p>8.進入Ubuntu後，使用者依照下圖順序將「命令提示字元」打開<br><img src="/image/IT/20200722/072513.png"></p>
+<hr>
+<p>9.接下來請打下列指令更新Ubuntu驅動與packages，第一次可能會花比較長的時間進行更新。</p>
+<blockquote class="blockquote-center"><p>Ubuntu 軟體更新指令 </p>
+</blockquote>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+
+<blockquote class="blockquote-center"><p>安裝SSH 套件 </p>
+</blockquote>
+<p>安裝此套件才可以使本機透過<a href="https://zh.wikipedia.org/wiki/Secure_Shell">SSH</a>網路傳輸協議,與虛擬機進行溝通。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt-get install openssh-server</span><br><span class="line">$ sudo systemctl status ssh.service </span><br><span class="line">$ sudo systemctl restart ssh.service</span><br></pre></td></tr></table></figure>
+
+<blockquote class="blockquote-center"><p>安裝net-tools 套件 與 查詢虛擬機IP位置 </p>
+</blockquote>
+<p>接下來我們要透過ifconfig 指令查看虛擬機的ip位置，由於ifconfig在ubuntu預設是沒有安裝的，因此要先打下列指令進行安裝。(指令中的sudo 係指管理員權限 )<br>安裝完成後應該可以看到下圖的ip資訊。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install net-tools</span><br><span class="line">$ ifconfig</span><br></pre></td></tr></table></figure>
+
+<p><img src="/image/IT/20200722/072514.png"></p>
+<hr>
+<p>10.接下來我們可以透過PuTTY軟體進行SSH連結，進而透過指令的方式控制虛擬機器。<br>但老達比較懶惰，直接使用Windows命令提示字元內建的ssh工具進行操控，我們只要進行一些設定即可使用。<br>詳細的設定流程就請各位參考其他大大的文章了<a href="https://kheresy.wordpress.com/2017/12/14/windows-begin-to-provide-ssh-client-and-server/">連結</a>。</p>
+<p>openSSH設定好就可以透過WIN+S鍵，輸入CMD叫出命令提示字元後輸入ssh連接指令。</p>
+<p style="color:red;" >user = 您Ubuntu的使用者名稱</p>
+<p style="color:red;">虛擬機IP = 剛剛ifconfig 查出的ip位置</p>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh user@虛擬機IP</span><br></pre></td></tr></table></figure>
+<p>如果有成功打到虛擬機器的話，會看到下面的提示，詢問你是否確定是否要連接，輸入yes。<br><img src="/image/IT/20200722/1.PNG"><br>後續會詢問你密碼是多少，如果輸入正確的話，就可以直接登入虛擬機器進行操作了。<br><img src="/image/IT/20200722/2.PNG"><br><img src="/image/IT/20200722/3.PNG"></p>
+<p>如果想要登出的話，請輸入下列指令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<p>下篇文章將分享如何在虛擬機上安裝Mysql，並存入PTX公共運輸公車站牌相關資料。</p>
+<hr>
+]]></content>
+      <categories>
+        <category>技術分享</category>
+      </categories>
+      <tags>
+        <tag>vmware</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu安裝MySQL</title>
+    <url>/2020/07/27/Ubuntu%E5%AE%89%E8%A3%9DMySQL/</url>
+    <content><![CDATA[<p>本章節將會教您如何在虛擬機(Ubuntu)內，架設一個屬於自己的免費資料庫，並且利用DBeaver進行資料的基本操作與瀏覽。</p>
+<h1 id="安裝MySQL"><a href="#安裝MySQL" class="headerlink" title="安裝MySQL"></a>安裝MySQL</h1><p>請透過ssh連接到您的虛擬機上，並且輸入下列指令：<br>(安裝Mysql伺服器與客戶端的套件)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt-get install mysql-server</span><br><span class="line">$ sudo apt install mysql-client</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/1.PNG"></p>
+<p>若安裝完成後可輸入下列指令，查看MySQL是否安裝成功，若在成功的前提下應可看到下圖。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo netstat -tap | grep mysql</span><br></pre></td></tr></table></figure>
+
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/image/IT/20200727/2.PNG"></h2><h1 id="允許-MySQL-被遠端訪問"><a href="#允許-MySQL-被遠端訪問" class="headerlink" title="允許 MySQL 被遠端訪問"></a>允許 MySQL 被遠端訪問</h1><p>此處設定係方便Windows主機透過IP連接的方式，存取虛擬機中的MySQL資料庫，因此要設定MySQL 允許被遠端訪問。該操作需要透過文字編輯器針對config設定檔進行修改，因此先岔個提，介紹一下Vim。</p>
+<h3 id="Vim基本介紹與操作"><a href="#Vim基本介紹與操作" class="headerlink" title="Vim基本介紹與操作"></a>Vim基本介紹與操作</h3><p>Vim類似windows中的txt編輯器。<a href="https://zh.wikipedia.org/wiki/Vim">Vim</a>是由vi編輯器發展而來的一種文字編輯器，linux系統當中為相當常見的文字編輯器，在程式設計師中被大量使用(如同我們在python課時，使用vs code一樣)，它強調手不用離開鍵盤就可以操作，提供一種沉靜式的開發環境。<br><img src="/image/IT/20200727/3.png"></p>
+<p>首先輸入下列指令，安裝vim套件(記得要輸入Y)。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/2-1.PNG"></p>
+<p>我們先練習一下如何使用vim進行文字編輯，我們先移到根目錄，並創建一個名為code的資料夾。<br>在圖中我們可以看到code資料夾。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> / <span class="comment">#移至根目錄</span></span><br><span class="line">$ sudo <span class="built_in">mkdir</span> code <span class="comment">#建立code資料夾</span></span><br><span class="line">$ <span class="built_in">ls</span> <span class="comment">#顯示當前路徑所有檔案與資料夾</span></span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/4.png"></p>
+<p>確定有建立code資料夾後，我們移至code 資料夾中，建立一個.py檔試試看。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> code</span><br><span class="line">$ sudo vim hello.py</span><br></pre></td></tr></table></figure>
+<p>重頭戲來了，當打完上面的指令後應該會看到一片漆黑，如圖。<br><img src="/image/IT/20200727/5.png"><br>此時我們輸入i，畫面就會有所變化，此時我們就可以開始針對這個py檔進行編輯。<br><img src="/image/IT/20200727/6.png"></p>
+<p>此時再輸入一串python的hello world</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hello world! Vim&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>輸入完成後，按下Esc鍵(鍵盤左上方那顆)，再輸入<a style="color:red">:wq</a>進行存檔。<br><img src="/image/IT/20200727/7.png"></p>
+<p>存檔完成後terminal會移至code資料夾中，我們再輸入下列指令執行python腳本，若正常情況下應該可以看到console中顯示「hello world! Vim」的字樣。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">ls</span></span><br><span class="line">$ python3 hello.py</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/8.png"></p>
+<hr>
+<h1 id="回到主題-允許-MySQL-被遠端訪問-你的實體電腦"><a href="#回到主題-允許-MySQL-被遠端訪問-你的實體電腦" class="headerlink" title="回到主題 允許 MySQL 被遠端訪問 (你的實體電腦)"></a>回到主題 允許 MySQL 被遠端訪問 (你的實體電腦)</h1><h3 id="1-修改-mysql-cnf"><a href="#1-修改-mysql-cnf" class="headerlink" title="1.修改 mysql.cnf"></a>1.修改 mysql.cnf</h3><p>我們先移至到&#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d資料夾中，並且利用Vim將mysqld.cnf進行修改。進入之後我們要將bind-addres &#x3D; 127.0.0.1 的部分註解起來(前面打#字)，完成後一樣輸入<a style="color:red;">:wq</a>退出Vim。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /etc/mysql/mysql.conf.d</span><br><span class="line">$ sudo vim mysqld.cnf</span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/9.png"><br><img src="/image/IT/20200727/10.png"></p>
+<hr>
+<h3 id="2-查看MySQL目前運行狀態與查看MySQL的帳密"><a href="#2-查看MySQL目前運行狀態與查看MySQL的帳密" class="headerlink" title="2.查看MySQL目前運行狀態與查看MySQL的帳密"></a>2.查看MySQL目前運行狀態與查看MySQL的帳密</h3><p>輸入下列指令，查看目前MySQL服務是否正在運行?</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo service mysql status</span><br></pre></td></tr></table></figure>
+<p>若是沒有正在執行，請再輸入下列指令，使MySQL資料庫重啟：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo service mysql restart </span><br></pre></td></tr></table></figure>
+<h3 id="3-登入MySQL新增使用者帳號"><a href="#3-登入MySQL新增使用者帳號" class="headerlink" title="3.登入MySQL新增使用者帳號"></a>3.登入MySQL新增使用者帳號</h3><p>接下來我們要進入MySQL建立新的使用者帳號，基於安全性的原因，故而不是使用root對外進行開放。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo mysql <span class="comment">#進入MySQL</span></span><br></pre></td></tr></table></figure>
+<p>若成功進入的話，應該可以看到下圖：<br><img src="/image/IT/20200727/11.png"></p>
+<p>接下來我們輸入下列指令，username是您想要設定的使用者名稱，password是此使用者帳號的密碼。<br>設置完成後我們再輸入exit退出MySQL。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;username&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;password&#x27;</span>; <span class="comment">--新增使用者</span></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;username&#x27;</span>@<span class="string">&#x27;%&#x27;</span> <span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION; <span class="comment">--給予最大管理權限</span></span><br><span class="line">EXIT;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="防火牆設定"><a href="#防火牆設定" class="headerlink" title="防火牆設定"></a>防火牆設定</h3><p>MySQL預設的<a style="color:red;"><a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E8%A8%8A%E5%9F%A0">通訊埠</a></a><a style="color :red ;"> (英文為PORT)</a>為3306，我們要設定防火牆開放port 3306供外部網路進行存取，請輸入下列指令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt-get install ufw <span class="comment">#安裝防火牆</span></span><br><span class="line">$ sudo ufw allow 3306 <span class="comment">#開放port 3306</span></span><br><span class="line">$ sudo ufw <span class="built_in">enable</span> <span class="comment">#啟動防火牆</span></span><br><span class="line">$ sudo ufw status numbered <span class="comment">#查看目前防火牆規則</span></span><br></pre></td></tr></table></figure>
+<p><img src="/image/IT/20200727/12.png"></p>
+<hr>
+<h3 id="下載資料庫管理工具-DBeaver"><a href="#下載資料庫管理工具-DBeaver" class="headerlink" title="下載資料庫管理工具(DBeaver)"></a>下載資料庫管理工具(DBeaver)</h3><p>老達在這邊推薦一款超好用的資料庫管理工具「<a href="https://zh.wikipedia.org/zh-tw/DBeaver">DBeaver</a>」，它的強大之處在於可以透過一套管理工具，連接多種不同類型的資料庫(如常見的Oracle、SQL Server、MySQL、SQLite等等)。首先我們先至<a href="https://dbeaver.io/download/">DBeaver官方網站</a>下載安裝檔，如果我們是用Windows系統的話，請點選紅框處進行下載。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/DBeaver_logo.svg/1024px-DBeaver_logo.svg.png"><br><img src="/image/IT/20200727/installdbeaver.png"></p>
+<hr>
+<h3 id="DBeaver-MySQL設定"><a href="#DBeaver-MySQL設定" class="headerlink" title="DBeaver MySQL設定"></a>DBeaver MySQL設定</h3><p>DBeaver的安裝流程老達就不詳細操作了，基本是無腦安裝。安裝完成後應該可以看到乾乾淨淨的操作頁面。點選左上角紅框處新建虛擬機MySQL的連接。<br><img src="/image/IT/20200727/dbeaver.png"></p>
+<p>在紅框處輸入mysql並按下enter搜尋，點選中間的MySQL+進行設定。<br><img src="/image/IT/20200727/13.png"><br>接下來輸入虛擬機ip，我們可以發現DBeaver預設已經代port 3306了，所以我們就不進行修改。並輸入我們剛剛設定的使用者名稱與密碼，並且設定Server Time Zone為Asia&#x2F;Taipei，設定好後按下右下角的Test Connection…。</p>
+<p><img src="/image/IT/20200727/14.png"><br><img src="/image/IT/20200727/15.png"><br>如果沒有看到上面的成功連接畫面，並且出現<a style="color:red;"><br>Public Key Retrieval is not allowed.</a>的錯誤字串時，請至裝置屬性的設定頁面將allowPublicKeyRetrieval設定為True，調整完成後再測試看看是否可以連接。<br><img src="/image/IT/20200727/16.png"></p>
+<hr>
+<p>下篇會分享如何將PTX資料匯入資料庫中，透過SQL指令進行處理與分析。</p>
+]]></content>
+      <categories>
+        <category>技術分享</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>ubuntu</tag>
+        <tag>data base</tag>
       </tags>
   </entry>
 </search>

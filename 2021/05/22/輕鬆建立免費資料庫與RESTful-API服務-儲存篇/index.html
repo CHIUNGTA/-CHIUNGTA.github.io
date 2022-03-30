@@ -86,12 +86,12 @@
 
 
 
-<meta name="description" content="&amp;#160; &amp;#160; 接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。 撰寫資料接口同樣使用上篇所使用的Google試算表，使用GAS撰寫接收資料使用的接口，撰寫完成後記得要進行發布。程式碼如下: 1234567891011&#x2F;** * 接收資料接口 *&#x2F;function doPost(e)&amp;">
+<meta name="description" content="接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。 撰寫資料接口同樣使用上篇所使用的Google試算表，使用GAS撰寫接收資料使用的接口，撰寫完成後記得要進行發布。程式碼如下: 1234567891011&#x2F;** * 接收資料接口 *&#x2F;function doPost(e)&amp;#123;  try&amp;#123;    re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="輕鬆建立免費資料庫與RESTful-API服務-儲存篇">
 <meta property="og:url" content="https://chiungta.github.io/2021/05/22/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful-API%E6%9C%8D%E5%8B%99-%E5%84%B2%E5%AD%98%E7%AF%87/index.html">
 <meta property="og:site_name" content="老達遊記">
-<meta property="og:description" content="&amp;#160; &amp;#160; 接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。 撰寫資料接口同樣使用上篇所使用的Google試算表，使用GAS撰寫接收資料使用的接口，撰寫完成後記得要進行發布。程式碼如下: 1234567891011&#x2F;** * 接收資料接口 *&#x2F;function doPost(e)&amp;">
+<meta property="og:description" content="接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。 撰寫資料接口同樣使用上篇所使用的Google試算表，使用GAS撰寫接收資料使用的接口，撰寫完成後記得要進行發布。程式碼如下: 1234567891011&#x2F;** * 接收資料接口 *&#x2F;function doPost(e)&amp;#123;  try&amp;#123;    re">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20210522/1.jpg">
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20210522/2.jpg">
@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20210522/5.jpg">
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20210522/6.jpg">
 <meta property="article:published_time" content="2021-05-22T14:19:33.000Z">
-<meta property="article:modified_time" content="2022-03-28T16:33:37.000Z">
+<meta property="article:modified_time" content="2022-03-29T16:23:52.004Z">
 <meta property="article:author" content="CHIUNG TA">
 <meta property="article:tag" content="google-app-script">
 <meta name="twitter:card" content="summary">
@@ -419,7 +419,7 @@
       
 
       
-        <p>&amp;#160; &amp;#160; 接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。</p>
+        <p>接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。</p>
 <h1 id="撰寫資料接口"><a href="#撰寫資料接口" class="headerlink" title="撰寫資料接口"></a>撰寫資料接口</h1><p>同樣使用上篇所使用的Google試算表，使用GAS撰寫接收資料使用的接口，撰寫完成後記得要進行發布。<br>程式碼如下:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 接收資料接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">doPost</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">ContentService</span>.<span class="title function_">createTextOutput</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(e))</span><br><span class="line">                         .<span class="title function_">setMimeType</span>(<span class="title class_">ContentService</span>.<span class="property">MimeType</span>.<span class="property">JSON</span>); <span class="comment">//將傳送至該方法中的參數物件，轉為JSON 字串吐回</span></span><br><span class="line">  &#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">   <span class="keyword">return</span> err</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -591,7 +591,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -613,7 +613,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">標籤</span>
                 </a>
               </div>

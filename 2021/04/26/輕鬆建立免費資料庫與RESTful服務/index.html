@@ -86,12 +86,12 @@
 
 
 
-<meta name="description" content="&amp;#160; &amp;#160; 在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至外網環境時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用Google app Engine這類的應用程式代管平台，這對">
+<meta name="description" content="在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至外網環境時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用Google app Engine這類的應用程式代管平台，這對於只是要單純確認前端程式是否有誤的新手小白來">
 <meta property="og:type" content="article">
 <meta property="og:title" content="輕鬆建立免費資料庫與RESTful-API服務">
 <meta property="og:url" content="https://chiungta.github.io/2021/04/26/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful%E6%9C%8D%E5%8B%99/index.html">
 <meta property="og:site_name" content="老達遊記">
-<meta property="og:description" content="&amp;#160; &amp;#160; 在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至外網環境時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用Google app Engine這類的應用程式代管平台，這對">
+<meta property="og:description" content="在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至外網環境時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用Google app Engine這類的應用程式代管平台，這對於只是要單純確認前端程式是否有誤的新手小白來">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://miro.medium.com/max/996/1*J6Qm1Gr3RaG1oVPW5v4-0Q.png">
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/1.jpg">
@@ -109,7 +109,7 @@
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/14.jpg">
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20210423/15.jpg">
 <meta property="article:published_time" content="2021-04-25T17:59:58.000Z">
-<meta property="article:modified_time" content="2022-03-28T16:33:37.000Z">
+<meta property="article:modified_time" content="2022-03-29T16:23:52.003Z">
 <meta property="article:author" content="CHIUNG TA">
 <meta property="article:tag" content="google-app-script">
 <meta name="twitter:card" content="summary">
@@ -428,7 +428,7 @@
       
 
       
-        <p>&amp;#160; &amp;#160; 在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至<strong>外網環境</strong>時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用<a target="_blank" rel="noopener" href="https://cloud.google.com/appengine/?hl=zh-tw&utm_source=google&utm_medium=cpc&utm_campaign=japac-TW-all-zh-dr-bkws-all-super-trial-e-dr-1009882&utm_content=text-ad-none-none-DEV_c-CRE_437849980448-ADGP_Hybrid%20%7C%20BKWS%20-%20EXA%20%7C%20Txt%20~%20Compute%20~%20App%20Engine_app%20engine-google%20app%20engine-en-KWID_43700031884576212-kwd-5245655962&userloc_9040380-network_g&utm_term=KW_google%20app%20engine&gclid=Cj0KCQjwppSEBhCGARIsANIs4p6ZQAX0vDAhrdm0kmcdS9sfNnbAw5Hzxf2i8N1Fr2DXXI2YOEyDblcaAkjVEALw_wcB&gclsrc=aw.ds">Google app Engine</a>這類的應用程式代管平台，這對於只是要單純確認前端程式是否有誤的新手小白來說過於麻煩，因此下列將利用Google apps script，建立簡易型的資料存取API 服務。</p>
+        <p>在網頁開發過程中，大多需要一個後端服務，提供開發者取得或儲存資料，以確認前端網頁寫法是否正確，大多情況之下均是透過本地端執行編譯後端服務。但若應用場景擴及至<strong>外網環境</strong>時，後端伺服器的架設成本就會變的相當之高()，常見的方式多為使用免費&#x2F;付費的虛擬主機(Virtual Host)或是使用<a target="_blank" rel="noopener" href="https://cloud.google.com/appengine/?hl=zh-tw&utm_source=google&utm_medium=cpc&utm_campaign=japac-TW-all-zh-dr-bkws-all-super-trial-e-dr-1009882&utm_content=text-ad-none-none-DEV_c-CRE_437849980448-ADGP_Hybrid%20%7C%20BKWS%20-%20EXA%20%7C%20Txt%20~%20Compute%20~%20App%20Engine_app%20engine-google%20app%20engine-en-KWID_43700031884576212-kwd-5245655962&userloc_9040380-network_g&utm_term=KW_google%20app%20engine&gclid=Cj0KCQjwppSEBhCGARIsANIs4p6ZQAX0vDAhrdm0kmcdS9sfNnbAw5Hzxf2i8N1Fr2DXXI2YOEyDblcaAkjVEALw_wcB&gclsrc=aw.ds">Google app Engine</a>這類的應用程式代管平台，這對於只是要單純確認前端程式是否有誤的新手小白來說過於麻煩，因此下列將利用Google apps script，建立簡易型的資料存取API 服務。</p>
 <h1 id="什麼是Google-apps-script"><a href="#什麼是Google-apps-script" class="headerlink" title="什麼是Google apps script ?"></a>什麼是Google apps script ?</h1><p><img src="https://miro.medium.com/max/996/1*J6Qm1Gr3RaG1oVPW5v4-0Q.png"></p>
 <p>簡單來說就是Google透過基於javascript的語法，將Google家中多數的服務進行串聯，提供使用者進行<strong>客製化</strong>的服務使用。目前在使用上多為免費，雖說在呼叫次數上有額度限制，但對於一般非商業使用者是綽綽有餘的。</p>
 <h1 id="如何開始"><a href="#如何開始" class="headerlink" title="如何開始?"></a>如何開始?</h1><h2 id="建立Google試算表"><a href="#建立Google試算表" class="headerlink" title="建立Google試算表"></a>建立Google試算表</h2><ol>
@@ -641,7 +641,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -663,7 +663,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">標籤</span>
                 </a>
               </div>

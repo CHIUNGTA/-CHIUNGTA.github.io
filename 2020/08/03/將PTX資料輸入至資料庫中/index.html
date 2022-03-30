@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="MySQL,PTX,database,Excel," />
+  <meta name="keywords" content="PTX,MySQL,database,Excel," />
 
 
 
@@ -86,12 +86,12 @@
 
 
 
-<meta name="description" content="&amp;#160; &amp;#160; 本章節將會教您如何從PTX服務平台公共運輸整合資訊流通服務平台，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。 PTX資料撈取與儲存PTX API 服務首先我們先進入PTX官方網站，點選紅框處的「線上API說明」。 點選後我們可以看到有許多API，可以提供給我們進行撈取使用，這邊就先以公路客運公車站牌為例，點選GET &amp;#x2F">
+<meta name="description" content="本章節將會教您如何從PTX服務平台公共運輸整合資訊流通服務平台，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。 PTX資料撈取與儲存PTX API 服務首先我們先進入PTX官方網站，點選紅框處的「線上API說明」。 點選後我們可以看到有許多API，可以提供給我們進行撈取使用，這邊就先以公路客運公車站牌為例，點選GET &#x2F;v2&#x2F;Bus&#x2F;Stop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="將PTX資料透過Excel與DBeaver匯入至資料庫中">
 <meta property="og:url" content="https://chiungta.github.io/2020/08/03/%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD/index.html">
 <meta property="og:site_name" content="老達遊記">
-<meta property="og:description" content="&amp;#160; &amp;#160; 本章節將會教您如何從PTX服務平台公共運輸整合資訊流通服務平台，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。 PTX資料撈取與儲存PTX API 服務首先我們先進入PTX官方網站，點選紅框處的「線上API說明」。 點選後我們可以看到有許多API，可以提供給我們進行撈取使用，這邊就先以公路客運公車站牌為例，點選GET &amp;#x2F">
+<meta property="og:description" content="本章節將會教您如何從PTX服務平台公共運輸整合資訊流通服務平台，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。 PTX資料撈取與儲存PTX API 服務首先我們先進入PTX官方網站，點選紅框處的「線上API說明」。 點選後我們可以看到有許多API，可以提供給我們進行撈取使用，這邊就先以公路客運公車站牌為例，點選GET &#x2F;v2&#x2F;Bus&#x2F;Stop">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/01.png">
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/02.jpg">
@@ -116,10 +116,10 @@
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/20.jpg">
 <meta property="og:image" content="https://chiungta.github.io/image/IT/20200803/21.jpg">
 <meta property="article:published_time" content="2020-08-03T13:11:33.000Z">
-<meta property="article:modified_time" content="2022-03-28T16:33:37.000Z">
+<meta property="article:modified_time" content="2022-03-29T16:23:52.021Z">
 <meta property="article:author" content="CHIUNG TA">
-<meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="PTX">
+<meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="database">
 <meta property="article:tag" content="Excel">
 <meta name="twitter:card" content="summary">
@@ -438,7 +438,7 @@
       
 
       
-        <p>&amp;#160; &amp;#160; 本章節將會教您如何從PTX服務平台<a target="_blank" rel="noopener" href="https://ptx.transportdata.tw/PTX/">公共運輸整合資訊流通服務平台</a>，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。</p>
+        <p>本章節將會教您如何從PTX服務平台<a target="_blank" rel="noopener" href="https://ptx.transportdata.tw/PTX/">公共運輸整合資訊流通服務平台</a>，撈取政府公開的公車站牌或是即時的公車位置資料，並且將資料匯入資料庫當中。</p>
 <h1 id="PTX資料撈取與儲存"><a href="#PTX資料撈取與儲存" class="headerlink" title="PTX資料撈取與儲存"></a>PTX資料撈取與儲存</h1><h2 id="PTX-API-服務"><a href="#PTX-API-服務" class="headerlink" title="PTX API 服務"></a>PTX API 服務</h2><p>首先我們先進入<a target="_blank" rel="noopener" href="https://ptx.transportdata.tw/PTX/">PTX官方網站</a>，點選紅框處的「線上API說明」。<br><img src="/image/IT/20200803/01.png"></p>
 <p>點選後我們可以看到有許多API，可以提供給我們進行撈取使用，這邊就先以公路客運公車站牌為例，點選<a target="_blank" rel="noopener" href="https://ptx.transportdata.tw/MOTC#!/InterCityBus/InterCityBusApi_StopOfRoute">GET &#x2F;v2&#x2F;Bus&#x2F;StopOfRoute&#x2F;InterCity 取得公路客運路線與站牌資料</a>，可以看到這個API有提供許多可供篩選的選項，例如只要前50筆資料或是只要某縣市範圍的公車站牌資料等等…<br>我們將滑鼠移到<a style="color:red">$format</a>，點選XML格式並按下左下角的「Try it out!」。<br><img src="/image/IT/20200803/02.jpg"></p>
 <p>點開後我們可以看到PTX幫 <a href="%E5%B0%87PTX%E8%B3%87%E6%96%99%E8%BC%B8%E5%85%A5%E8%87%B3%E8%B3%87%E6%96%99%E5%BA%AB%E4%B8%AD.md">將PTX資料輸入至資料庫中.md</a> 我們預設帶出30筆公車站牌資料，在URI中可以觀察到<a style="color:red">top&#x3D;30</a>，意思是我們只要取前30筆資料即可；<a style="color:red">format&#x3D;JSON</a>的意思則是要求PTX將我們要查詢的資料依照<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/XML">XML</a>或是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/JSON">JSON</a>的資料格式回傳，方便我們後續針對資料進行處理。我們先複製紅框處的Request URI，並且打開EXCEL。<br><img src="/image/IT/20200803/03.jpg"></p>
@@ -477,9 +477,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
-          
             <a href="/tags/PTX/" rel="tag"># PTX</a>
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
           
             <a href="/tags/database/" rel="tag"># database</a>
           
@@ -597,7 +597,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">文章</span>
                 </a>
               </div>
@@ -619,7 +619,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">標籤</span>
                 </a>
               </div>

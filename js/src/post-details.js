@@ -73,8 +73,10 @@ $(document).ready(function () {
   $('.post-toc a').on('click', function (e) {
     e.preventDefault();
     var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+    console.log('targetSelector', targetSelector)
+    console.log('$(targetSelector).offset()', $(targetSelector).offset())
     var offset = $(targetSelector).offset().top;
-
+    console.log('offset', offset)
     hasVelocity ?
       html.velocity('stop').velocity('scroll', {
         offset: offset  + 'px',

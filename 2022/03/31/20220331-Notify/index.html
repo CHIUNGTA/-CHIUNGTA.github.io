@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="IIS,SSl," />
+  <meta name="keywords" content="Line,google-app-script," />
 
 
 
@@ -86,39 +86,25 @@
 
 
 
-<meta name="description" content="今天剛好要寫一份更新SSL的流程文件，所以就順便寫在這個部落格中避免將來忘記。整個更新的步驟分為兩項，第一項為更新申請新的SSl憑證，第二則是將改憑證設定為IIS中，以下範例皆是基於sslforfree.com網站進行申請的，因此下列說明也是在該基礎上進行講解。 更新SSL 憑證 登入sslforfree.com操作儀表板中。  成功登入後，我們可以查看到在該帳號下面所有的SSl狀況與過期時間，在">
+<meta name="description" content="繼上一篇講解怎麼用Google-App-Script定時推送訊息，但這樣就顯得有點單調，因此這篇就教大家怎麼去Google雲端硬碟中，提取圖片檔案(.jpg&#x2F;.png) 進行推送。 Create a Google Driver Folder 資料夾編號相信大家都有使用Google雲端吧？這邊就不特別介紹了。新增新的資料夾後我們要把網址中的ID記下來，這個編號就好像是這個資料夾的地址，我們">
 <meta property="og:type" content="article">
-<meta property="og:title" content="更新zero-ssl憑證於IIS平台">
-<meta property="og:url" content="https://chiungta.github.io/2021/10/16/%E6%9B%B4%E6%96%B0zero-ssl%E6%86%91%E8%AD%89%E6%96%BCIIS%E5%B9%B3%E5%8F%B0/index.html">
+<meta property="og:title" content="免費定時執行line(推圖篇)">
+<meta property="og:url" content="https://chiungta.github.io/2022/03/31/20220331-Notify/index.html">
 <meta property="og:site_name" content="老達遊記">
-<meta property="og:description" content="今天剛好要寫一份更新SSL的流程文件，所以就順便寫在這個部落格中避免將來忘記。整個更新的步驟分為兩項，第一項為更新申請新的SSl憑證，第二則是將改憑證設定為IIS中，以下範例皆是基於sslforfree.com網站進行申請的，因此下列說明也是在該基礎上進行講解。 更新SSL 憑證 登入sslforfree.com操作儀表板中。  成功登入後，我們可以查看到在該帳號下面所有的SSl狀況與過期時間，在">
+<meta property="og:description" content="繼上一篇講解怎麼用Google-App-Script定時推送訊息，但這樣就顯得有點單調，因此這篇就教大家怎麼去Google雲端硬碟中，提取圖片檔案(.jpg&#x2F;.png) 進行推送。 Create a Google Driver Folder 資料夾編號相信大家都有使用Google雲端吧？這邊就不特別介紹了。新增新的資料夾後我們要把網址中的ID記下來，這個編號就好像是這個資料夾的地址，我們">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/01.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/02.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/03.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/04.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/05.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/06.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/07.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/08.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/09.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/10.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/11.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/12.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/13.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/14.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/15.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/16.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/17.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/18.png">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20211016/19.png">
-<meta property="article:published_time" content="2021-10-16T09:44:15.000Z">
-<meta property="article:modified_time" content="2022-03-29T16:23:29.133Z">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20220331/1.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20220331/3.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20220331/4.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20220331/5.png">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20220331/6.png">
+<meta property="article:published_time" content="2022-03-31T12:54:57.000Z">
+<meta property="article:modified_time" content="2022-03-31T15:21:48.836Z">
 <meta property="article:author" content="CHIUNG TA">
-<meta property="article:tag" content="IIS">
-<meta property="article:tag" content="SSl">
+<meta property="article:tag" content="Line">
+<meta property="article:tag" content="google-app-script">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://chiungta.github.io/image/IT/20211016/01.png">
+<meta name="twitter:image" content="https://chiungta.github.io/image/IT/20220331/1.png">
 
 
 
@@ -148,7 +134,7 @@
 
 
 
-  <link rel="canonical" href="https://chiungta.github.io/2021/10/16/更新zero-ssl憑證於IIS平台/"/>
+  <link rel="canonical" href="https://chiungta.github.io/2022/03/31/20220331-Notify/"/>
 
 
 
@@ -164,7 +150,7 @@
 </script>
 
 
-  <title>更新zero-ssl憑證於IIS平台 | 老達遊記</title>
+  <title>免費定時執行line(推圖篇) | 老達遊記</title>
   
 
 
@@ -345,7 +331,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chiungta.github.io/2021/10/16/%E6%9B%B4%E6%96%B0zero-ssl%E6%86%91%E8%AD%89%E6%96%BCIIS%E5%B9%B3%E5%8F%B0/">
+    <link itemprop="mainEntityOfPage" href="https://chiungta.github.io/2022/03/31/20220331-Notify/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老達">
@@ -362,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">更新zero-ssl憑證於IIS平台</h1>
+          <h1 class="post-title" itemprop="name headline">免費定時執行line(推圖篇)</h1>
         
 
         <div class="post-meta">
@@ -374,8 +360,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2021-10-16T17:44:15+08:00">
-                2021-10-16
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2022-03-31T20:54:57+08:00">
+                2022-03-31
               </time>
             
 
@@ -434,37 +420,26 @@
       
 
       
-        <p>今天剛好要寫一份更新SSL的流程文件，所以就順便寫在這個部落格中避免將來忘記。整個更新的步驟分為兩項，第一項為更新申請新的SSl憑證，第二則是將改憑證設定為IIS中，以下範例皆是基於<a target="_blank" rel="noopener" href="https://manage.sslforfree.com/login?u=https://manage.sslforfree.com/dashboard">sslforfree.com</a>網站進行申請的，因此下列說明也是在該基礎上進行講解。</p>
-<h1 id="更新SSL-憑證"><a href="#更新SSL-憑證" class="headerlink" title="更新SSL 憑證"></a>更新SSL 憑證</h1><ol>
-<li><p>登入<a target="_blank" rel="noopener" href="https://manage.sslforfree.com/login?u=https://manage.sslforfree.com/dashboard">sslforfree.com</a>操作儀表板中。<br><img src="/image/IT/20211016/01.png"></p>
-</li>
-<li><p>成功登入後，我們可以查看到在該帳號下面所有的SSl狀況與過期時間，在本範例中為2021&#x2F;10&#x2F;17會過期，因此我們需要按下renew進行更新申請。<br><img src="/image/IT/20211016/02.png"></p>
-</li>
-<li><p>確認Domain Name沒有錯誤。<br><img src="/image/IT/20211016/03.png"></p>
-</li>
-<li><p>選擇90天期限的驗證。<br><img src="/image/IT/20211016/04.png"></p>
-</li>
-<li><p>選擇免費方案<br><img src="/image/IT/20211016/05.png"></p>
-</li>
-<li><p>選擇http文件上傳驗證，並下載身份驗證文件，複製到IIS主機.&#x2F;well-known&#x2F;pki-validation&#x2F;中。<br><img src="/image/IT/20211016/06.png"><br><img src="/image/IT/20211016/07.png"></p>
-</li>
-<li><p>確認下列連結中，是否可以看到文件內容。<br><img src="/image/IT/20211016/08.png"></p>
-</li>
-<li><p>下載證書.zip，解壓縮後會取得3個檔案。<br><img src="/image/IT/20211016/09.png"><br><img src="/image/IT/20211016/10.png"></p>
-</li>
-<li><p>輸入以下指令，建立IIS所使用的憑證文件，指令中的檔案路徑即為上一步解壓縮的三個文件，輸出文件(-out)副檔名皆為.pfx。</p>
-</li>
+        <p>繼上一篇講解怎麼用Google-App-Script定時推送訊息，但這樣就顯得有點單調，因此這篇就教大家怎麼去Google雲端硬碟中，提取圖片檔案(.jpg&#x2F;.png) 進行推送。</p>
+<h1 id="Create-a-Google-Driver-Folder"><a href="#Create-a-Google-Driver-Folder" class="headerlink" title="Create a Google Driver Folder"></a>Create a Google Driver Folder</h1><ol>
+<li>資料夾編號<br>相信大家都有使用Google雲端吧？這邊就不特別介紹了。新增新的資料夾後我們要把網址中的<strong>ID</strong>記下來，這個編號就好像是這個資料夾的地址，我們要透過這個地址才能知道我們要去哪個資料夾拿東西，如下圖紅框處所示，1CQH….就是這個測試用資料夾的編號。</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl  pkcs12 -<span class="built_in">export</span> -out /Users/Downloads/spltruck.com/spltrack20211015.pfx -inkey /Users/Downloads/spltruck.com/private.key  -<span class="keyword">in</span> /Users/Downloads/spltruck.com/certificate.crt  -certfile /Users/Downloads/spltruck.com/ca_bundle.crt</span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20211016/11.png"></p>
-<h1 id="IIS憑證更新流程"><a href="#IIS憑證更新流程" class="headerlink" title="IIS憑證更新流程"></a>IIS憑證更新流程</h1><ol start="10">
-<li><p>上述指令完成後會取得一個.pfx檔，將其複製到IIS的Ｃ槽根目錄中。<br><img src="/image/IT/20211016/12.png"></p>
-</li>
-<li><p>打開IIS依以下步驟進行操作：<br><img src="/image/IT/20211016/13.png"><br><img src="/image/IT/20211016/14.png"><br><img src="/image/IT/20211016/15.png"><br><img src="/image/IT/20211016/16.png"><br><img src="/image/IT/20211016/17.png"><br><img src="/image/IT/20211016/18.png"></p>
-</li>
-<li><p>上述步驟完成後，透過瀏覽器開啟目標網站，確認過期時間是否有更新為90天後的日期，若更新完成則表示成功延長SSL的使用期間，搞完收工。<br><img src="/image/IT/20211016/19.png"></p>
-</li>
+<p><img src="/image/IT/20220331/1.png"></p>
+<ol start="2">
+<li>檔案編號<br>我們隨便上網選擇一張梗圖上傳，對你想要確認的檔案按右鍵，並選取「共用」鈕並點選下方的複製連結按鈕。<br><img src="/image/IT/20220331/3.png"></li>
 </ol>
+<p>我們將複製的字串貼出來大概會長下面的樣子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://drive.google.com/file/d/1x80oU2JFDtI1Ktkp8xG1KrAcU4LAfcAi/view?usp=sharing</span><br></pre></td></tr></table></figure>
+<p>其中網址中的：<span style="color:red;">1x80oU2JFDtI1Ktkp8xG1KrAcU4LAfcAi</span>就是這個檔案的編號，我們同樣可以透過這串編號去得這個檔案的相關資訊。</p>
+
+<p>我們知道了資料夾和檔案編號後，我們就可以開始透過Google App Script自動讀取雲端資料夾內的檔案了<strong>同樣的一次執行時，系統會和你進行安全性確認</strong>。</p>
+<h1 id="Read-Google-Driver-Folder-File-By-Google-App-Script"><a href="#Read-Google-Driver-Folder-File-By-Google-App-Script" class="headerlink" title="Read Google Driver Folder File By Google App Script"></a>Read Google Driver Folder File By Google App Script</h1><p>同樣先上程式碼再慢慢解釋：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _key =<span class="string">&#x27;你申請的Line Notify Key&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 傳送貼圖與檔案名稱</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> imgObj = <span class="variable language_">this</span>.<span class="title function_">getImageFileFromDriver</span>()</span><br><span class="line">  <span class="title class_">Logger</span>.<span class="title function_">log</span>(imgObj)</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">sendLineNotify</span>(</span><br><span class="line">    imgObj.<span class="property">message</span>, </span><br><span class="line">    imgObj.<span class="property">id</span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 傳送line notify</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sendLineNotify</span>(<span class="params">message, fileId</span>)&#123;</span><br><span class="line">   <span class="title class_">UrlFetchApp</span>.<span class="title function_">fetch</span>(<span class="string">&#x27;https://notify-api.line.me/api/notify&#x27;</span>, &#123;</span><br><span class="line">        <span class="string">&#x27;headers&#x27;</span>: &#123;</span><br><span class="line">           <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Bearer &#x27;</span> + _key,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;payload&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;message&#x27;</span>:message,</span><br><span class="line">            <span class="string">&#x27;imageFile&#x27;</span>: <span class="title class_">DriveApp</span>.<span class="title function_">getFileById</span>(fileId).<span class="title function_">getBlob</span>() <span class="comment">// 透過File Id取得檔案相關資料</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 從google雲端取得圖片資料</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getImageFileFromDriver</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> folderId = <span class="string">&#x27;你Google 雲端資料夾編號&#x27;</span></span><br><span class="line">  <span class="keyword">var</span> folder = <span class="title class_">DriveApp</span>.<span class="title function_">getFolderById</span>(folderId) <span class="comment">// 取得資料夾物件</span></span><br><span class="line">  <span class="keyword">var</span> files = folder.<span class="title function_">getFiles</span>()</span><br><span class="line">  <span class="keyword">var</span> fileList = []</span><br><span class="line">  <span class="keyword">while</span> (files.<span class="title function_">hasNext</span>())&#123; <span class="comment">// 透過迴圈，把資料夾內的所有資料掃出來 </span></span><br><span class="line">    file = files.<span class="title function_">next</span>();</span><br><span class="line">    fileList.<span class="title function_">push</span>(&#123;</span><br><span class="line">       <span class="attr">message</span>: file.<span class="title function_">getName</span>(), <span class="comment">// 你檔案的名稱</span></span><br><span class="line">       <span class="attr">id</span>: file.<span class="title function_">getId</span>() <span class="comment">// 你檔案的編號</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;檔案陣列&#x27;</span>, fileList)</span><br><span class="line">  <span class="keyword">return</span> fileList[<span class="title class_">Math</span>.<span class="title function_">random</span>()*fileList.<span class="property">length</span> | <span class="number">0</span>] <span class="comment">//隨機選一個檔案往回傳</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>透過上述的程式碼就可以讀取雲端硬碟中的圖片進行傳送了，接下來我們還要再做一件事，就是當這個梗圖已經使用過了，我不想再使用時要怎麼辦呢？這個時候我們就把它移到其他資料夾即可。</p>
+<h1 id="Move-File-To-used-folder"><a href="#Move-File-To-used-folder" class="headerlink" title="Move  File  To used folder"></a>Move  File  To used folder</h1><p>我們在同一個資料夾內部再新增一個資料夾，為了方便區分，我們將它命名為「已使用」。同樣的我們就可以得到一個新的資料夾編號，再依據上述的程式邏輯進行些許的調整，調整如下：<br><img src="/image/IT/20220331/4.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _key = <span class="string">&#x27;line notify key&#x27;</span> </span><br><span class="line"><span class="keyword">var</span> _usedFolderId = <span class="string">&#x27;已使用資料夾編號&#x27;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 傳送貼圖與檔案名稱</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 取得圖片物件</span></span><br><span class="line">  <span class="keyword">var</span> imgObj = <span class="variable language_">this</span>.<span class="title function_">getImageFileFromDriver</span>()</span><br><span class="line">  <span class="comment">// 發送line Notify</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">sendLineNotify</span>(</span><br><span class="line">    imgObj.<span class="property">message</span>, </span><br><span class="line">    imgObj.<span class="property">id</span></span><br><span class="line">  )</span><br><span class="line">  <span class="comment">// 將傳送出去的圖片，轉移到已使用的資料夾</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">moveFileToFolderById</span>(imgObj.<span class="property">id</span>, _usedFolderId)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 傳送line notify</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sendLineNotify</span>(<span class="params">message, fileId</span>)&#123;</span><br><span class="line">   <span class="title class_">UrlFetchApp</span>.<span class="title function_">fetch</span>(<span class="string">&#x27;https://notify-api.line.me/api/notify&#x27;</span>, &#123;</span><br><span class="line">        <span class="string">&#x27;headers&#x27;</span>: &#123;</span><br><span class="line">           <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Bearer &#x27;</span> + _key,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;payload&#x27;</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;message&#x27;</span>:message,</span><br><span class="line">            <span class="string">&#x27;imageFile&#x27;</span>: <span class="title class_">DriveApp</span>.<span class="title function_">getFileById</span>(fileId).<span class="title function_">getBlob</span>() <span class="comment">// 透過File Id取得檔案相關資料</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 從google雲端取得圖片資料</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getImageFileFromDriver</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> folderId = <span class="string">&#x27;放未使用的資料夾編號&#x27;</span></span><br><span class="line">  <span class="keyword">var</span> folder = <span class="title class_">DriveApp</span>.<span class="title function_">getFolderById</span>(folderId) <span class="comment">// 取得資料夾物件</span></span><br><span class="line">  <span class="keyword">var</span> files = folder.<span class="title function_">getFiles</span>()</span><br><span class="line">  <span class="keyword">var</span> fileList = []</span><br><span class="line">  <span class="keyword">while</span> (files.<span class="title function_">hasNext</span>())&#123;</span><br><span class="line">    file = files.<span class="title function_">next</span>();</span><br><span class="line">    fileList.<span class="title function_">push</span>(&#123;</span><br><span class="line">       <span class="attr">message</span>: file.<span class="title function_">getName</span>(),</span><br><span class="line">       <span class="attr">id</span>: file.<span class="title function_">getId</span>()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;檔案陣列&#x27;</span>, fileList)</span><br><span class="line">  <span class="keyword">return</span> fileList[<span class="title class_">Math</span>.<span class="title function_">random</span>()*fileList.<span class="property">length</span> | <span class="number">0</span>] <span class="comment">//隨機選一個檔案往回傳</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 依fileId and folderId 移動雲端硬碟內的檔案</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">moveFileToFolderById</span>(<span class="params">fileId, folderId </span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> file = <span class="title class_">DriveApp</span>.<span class="title function_">getFileById</span>(fileId) <span class="comment">// 取得檔案物件</span></span><br><span class="line">  file.<span class="title function_">moveTo</span>(<span class="title class_">DriveApp</span>.<span class="title function_">getFolderById</span>(folderId)) <span class="comment">// 將檔案依照資料夾編號進行轉移</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>執行成功後，就可以看到已使用的圖片就會自動轉移到「已使用」的資料夾當中了。<br><img src="/image/IT/20220331/5.png"><br><img src="/image/IT/20220331/6.png"></p>
+<h1 id="completion"><a href="#completion" class="headerlink" title="completion"></a>completion</h1><p>我們透過Google雲端硬碟的分享功能，就可以邀請不同的好朋友一起存放好玩有趣的梗圖，減少了麻煩的手續與硬體成本，大幅降低需要codeing的部分，並配合上篇的「觸發條件」設定，就可以輕鬆建立一個簡易的定時推播機器人！</p>
 
       
     </div>
@@ -482,9 +457,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/IIS/" rel="tag"># IIS</a>
+            <a href="/tags/Line/" rel="tag"># Line</a>
           
-            <a href="/tags/SSl/" rel="tag"># SSl</a>
+            <a href="/tags/google-app-script/" rel="tag"># google-app-script</a>
           
         </div>
       
@@ -497,8 +472,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/05/22/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful-API%E6%9C%8D%E5%8B%99-%E5%84%B2%E5%AD%98%E7%AF%87/" rel="next" title="輕鬆建立免費資料庫與RESTful-API服務-儲存篇">
-                <i class="fa fa-chevron-left"></i> 輕鬆建立免費資料庫與RESTful-API服務-儲存篇
+              <a href="/2022/03/30/%E5%85%8D%E8%B2%BB%E5%AE%9A%E6%99%82%E5%9F%B7%E8%A1%8CLine%20Notify%20%E5%8A%9F%E8%83%BD(%E6%8E%A8%E6%96%87%E7%AF%87)/" rel="next" title="免費定時執行Line Notify(推文篇)">
+                <i class="fa fa-chevron-left"></i> 免費定時執行Line Notify(推文篇)
               </a>
             
           </div>
@@ -506,10 +481,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2022/03/30/%E5%85%8D%E8%B2%BB%E5%AE%9A%E6%99%82%E5%9F%B7%E8%A1%8CLine%20Notify%20%E5%8A%9F%E8%83%BD(%E6%8E%A8%E6%96%87%E7%AF%87)/" rel="prev" title="免費定時執行Line Notify(推文篇)">
-                免費定時執行Line Notify(推文篇) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -669,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0SSL-%E6%86%91%E8%AD%89"><span class="nav-number">1.</span> <span class="nav-text">更新SSL 憑證</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IIS%E6%86%91%E8%AD%89%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">IIS憑證更新流程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Create-a-Google-Driver-Folder"><span class="nav-number">1.</span> <span class="nav-text">Create a Google Driver Folder</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Read-Google-Driver-Folder-File-By-Google-App-Script"><span class="nav-number">2.</span> <span class="nav-text">Read Google Driver Folder File By Google App Script</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Move-File-To-used-folder"><span class="nav-number">3.</span> <span class="nav-text">Move  File  To used folder</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#completion"><span class="nav-number">4.</span> <span class="nav-text">completion</span></a></li></ol></div>
             
 
           </div>

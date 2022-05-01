@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="google-app-script," />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -86,25 +86,22 @@
 
 
 
-<meta name="description" content="接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。 撰寫資料接口同樣使用上篇所使用的Google試算表，使用GAS撰寫接收資料使用的接口，撰寫完成後記得要進行發布。程式碼如下: 1234567891011&#x2F;** * 接收資料接口 *&#x2F;function doPost(e)&amp;#123;  try&amp;#123;    re">
+<meta name="description" content="近期有個項目要寫房貸的試算公式，但是網路上都找不到一個通用的算法，下面就針對不同的算法進行整理了： 本息平均攤還法依照20年、2％貸款800萬試算，結果與公式如下：  123456789loan_average() &amp;#123;    let rate &#x3D; 0.02 &#x2F;&#x2F; 年利率(2%)    let year &#x3D; 20 &#x2F;&#x2F; 貸款年份    let totalLoan &#x3D; 8000000 &#x2F;&#x2F;總">
 <meta property="og:type" content="article">
-<meta property="og:title" content="輕鬆建立免費資料庫與RESTful-API服務-儲存篇">
-<meta property="og:url" content="https://chiungta.github.io/2021/05/22/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful-API%E6%9C%8D%E5%8B%99-%E5%84%B2%E5%AD%98%E7%AF%87/index.html">
+<meta property="og:title" content="Javascript的房貸算法">
+<meta property="og:url" content="https://chiungta.github.io/2022/05/01/Javascript%E7%9A%84%E6%88%BF%E8%B2%B8%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="老達遊記">
-<meta property="og:description" content="接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。 撰寫資料接口同樣使用上篇所使用的Google試算表，使用GAS撰寫接收資料使用的接口，撰寫完成後記得要進行發布。程式碼如下: 1234567891011&#x2F;** * 接收資料接口 *&#x2F;function doPost(e)&amp;#123;  try&amp;#123;    re">
+<meta property="og:description" content="近期有個項目要寫房貸的試算公式，但是網路上都找不到一個通用的算法，下面就針對不同的算法進行整理了： 本息平均攤還法依照20年、2％貸款800萬試算，結果與公式如下：  123456789loan_average() &amp;#123;    let rate &#x3D; 0.02 &#x2F;&#x2F; 年利率(2%)    let year &#x3D; 20 &#x2F;&#x2F; 貸款年份    let totalLoan &#x3D; 8000000 &#x2F;&#x2F;總">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20210522/1.jpg">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20210522/2.jpg">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20210522/3.jpg">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20210522/4.jpg">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20210522/5.jpg">
-<meta property="og:image" content="https://chiungta.github.io/image/IT/20210522/6.jpg">
-<meta property="article:published_time" content="2021-05-22T14:19:33.000Z">
-<meta property="article:modified_time" content="2022-03-29T16:23:52.004Z">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20220501/1.jpeg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20220501/2.jpeg">
+<meta property="og:image" content="https://chiungta.github.io/image/IT/20220501/3.jpeg">
+<meta property="article:published_time" content="2022-05-01T07:09:47.000Z">
+<meta property="article:modified_time" content="2022-05-01T08:18:08.812Z">
 <meta property="article:author" content="CHIUNG TA">
-<meta property="article:tag" content="google-app-script">
+<meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://chiungta.github.io/image/IT/20210522/1.jpg">
+<meta name="twitter:image" content="https://chiungta.github.io/image/IT/20220501/1.jpeg">
 
 
 
@@ -134,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="https://chiungta.github.io/2021/05/22/輕鬆建立免費資料庫與RESTful-API服務-儲存篇/"/>
+  <link rel="canonical" href="https://chiungta.github.io/2022/05/01/Javascript的房貸算法/"/>
 
 
 
@@ -150,7 +147,7 @@
 </script>
 
 
-  <title>輕鬆建立免費資料庫與RESTful-API服務-儲存篇 | 老達遊記</title>
+  <title>Javascript的房貸算法 | 老達遊記</title>
   
 
 
@@ -331,7 +328,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chiungta.github.io/2021/05/22/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful-API%E6%9C%8D%E5%8B%99-%E5%84%B2%E5%AD%98%E7%AF%87/">
+    <link itemprop="mainEntityOfPage" href="https://chiungta.github.io/2022/05/01/Javascript%E7%9A%84%E6%88%BF%E8%B2%B8%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="老達">
@@ -348,7 +345,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">輕鬆建立免費資料庫與RESTful-API服務-儲存篇</h1>
+          <h1 class="post-title" itemprop="name headline">Javascript的房貸算法</h1>
         
 
         <div class="post-meta">
@@ -360,8 +357,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2021-05-22T22:19:33+08:00">
-                2021-05-22
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2022-05-01T15:09:47+08:00">
+                2022-05-01
               </time>
             
 
@@ -420,47 +417,17 @@
       
 
       
-        <p>接續上篇文章透過Google Apps Script(以下簡稱GAS)建立免費的RESTful服務，將資料儲存至Google試算表中。</p>
-<h1 id="撰寫資料接口"><a href="#撰寫資料接口" class="headerlink" title="撰寫資料接口"></a>撰寫資料接口</h1><p>同樣使用上篇所使用的Google試算表，使用GAS撰寫接收資料使用的接口，撰寫完成後記得要進行發布。<br>程式碼如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 接收資料接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">doPost</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">ContentService</span>.<span class="title function_">createTextOutput</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(e))</span><br><span class="line">                         .<span class="title function_">setMimeType</span>(<span class="title class_">ContentService</span>.<span class="property">MimeType</span>.<span class="property">JSON</span>); <span class="comment">//將傳送至該方法中的參數物件，轉為JSON 字串吐回</span></span><br><span class="line">  &#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">   <span class="keyword">return</span> err</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>近期有個項目要寫房貸的試算公式，但是網路上都找不到一個通用的算法，下面就針對不同的算法進行整理了：</p>
+<h1 id="本息平均攤還法"><a href="#本息平均攤還法" class="headerlink" title="本息平均攤還法"></a>本息平均攤還法</h1><p>依照20年、2％貸款800萬試算，結果與公式如下：</p>
+<p><img src="/image/IT/20220501/1.jpeg"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">loan_average</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> rate = <span class="number">0.02</span> <span class="comment">// 年利率(2%)</span></span><br><span class="line">    <span class="keyword">let</span> year = <span class="number">20</span> <span class="comment">// 貸款年份</span></span><br><span class="line">    <span class="keyword">let</span> totalLoan = <span class="number">8000000</span> <span class="comment">//總貸款金額(800w)</span></span><br><span class="line">    <span class="keyword">let</span> rateForMonth = rate / <span class="number">12</span> <span class="comment">// 平均月利息</span></span><br><span class="line">    <span class="keyword">let</span> avgRate = (<span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">1</span> + rateForMonth, (year * <span class="number">12</span>)) * rateForMonth) / (<span class="title class_">Math</span>.<span class="title function_">pow</span>((<span class="number">1</span> + rateForMonth), year * <span class="number">12</span>) - <span class="number">1</span>) <span class="comment">// 平均每月要繳的百分比</span></span><br><span class="line">    <span class="keyword">let</span> result = avgRate * totalLoan <span class="comment">// 每月要繳的錢</span></span><br><span class="line">    <span class="keyword">let</span> totalInterest = avgRate * totalLoan * year * <span class="number">12</span>) - totalLoan )) <span class="comment">// 總利息費用</span></span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="測試POST接口"><a href="#測試POST接口" class="headerlink" title="測試POST接口"></a>測試POST接口</h1><h2 id="POST-MAN-軟體"><a href="#POST-MAN-軟體" class="headerlink" title="POST MAN 軟體"></a>POST MAN 軟體</h2><p>  由於瀏覽器只能呼叫GET類型的方法，因此在開發時需要透過POST-MAN模擬服務請求，下列連結為<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10195738">安裝連結</a>在此就不再贅述。</p>
-<h2 id="使用POST-MAN-呼叫-doPost"><a href="#使用POST-MAN-呼叫-doPost" class="headerlink" title="使用POST MAN 呼叫 doPost"></a>使用POST MAN 呼叫 doPost</h2><p>  安裝完成後新增一筆任務，並依照下圖進行呼叫資料的調配。<br><img src="/image/IT/20210522/1.jpg"></p>
-<ul>
-<li>JSON資料範例</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;method&quot;</span><span class="punctuation">:</span> <span class="string">&quot;addUser&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;Name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;路人甲&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;Class&quot;</span><span class="punctuation">:</span> <span class="string">&quot;A&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;Name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;路人乙&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;Class&quot;</span><span class="punctuation">:</span> <span class="string">&quot;B&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h1 id="三階段調息月付"><a href="#三階段調息月付" class="headerlink" title="三階段調息月付"></a>三階段調息月付</h1><p><img src="/image/IT/20220501/2.jpeg"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">loan_stages</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> year = <span class="number">20</span> <span class="comment">// 貸款年份20年</span></span><br><span class="line">    <span class="keyword">let</span> totalLoan = <span class="number">8000000</span> <span class="comment">//貸款800萬</span></span><br><span class="line">        <span class="keyword">var</span> totalMonth = year * <span class="number">12</span></span><br><span class="line">        <span class="keyword">let</span> stagesRateList= [&#123;</span><br><span class="line">            <span class="attr">id</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">rate</span>: <span class="number">0.01</span>, <span class="comment">// 第一年1%利率</span></span><br><span class="line">            <span class="attr">monthCount</span>: <span class="number">12</span>,</span><br><span class="line">            <span class="attr">resultMessage</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">id</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="attr">rate</span>: <span class="number">0.02</span>, <span class="comment">// 第二年2%利率</span></span><br><span class="line">            <span class="attr">monthCount</span>: <span class="number">12</span>,</span><br><span class="line">            <span class="attr">resultMessage</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">id</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="attr">rate</span>: <span class="number">0.03</span>,<span class="comment">// 第三年3%利率</span></span><br><span class="line">            <span class="attr">monthCount</span>: <span class="number">0</span>, <span class="comment">//剩餘月份</span></span><br><span class="line">            <span class="attr">resultMessage</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">        stagesRateList[<span class="number">2</span>].<span class="property">monthCount</span> = totalMonth - <span class="number">24</span> <span class="comment">// 把剩餘月份填入第三階段</span></span><br><span class="line">        <span class="keyword">var</span> tempTotalLoan = totalLoan <span class="comment">// 餘額</span></span><br><span class="line">        <span class="keyword">let</span> totalInterest = <span class="number">0</span> <span class="comment">// 總利息</span></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        stagesRateList.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> rateForMonth = (item.<span class="property">rate</span>) / <span class="number">12</span></span><br><span class="line">          <span class="keyword">var</span> avgRate = (<span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">1</span> + rateForMonth, (totalMonth)) * rateForMonth) / (<span class="title class_">Math</span>.<span class="title function_">pow</span>((<span class="number">1</span> + rateForMonth),</span><br><span class="line">            totalMonth) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">var</span> avgMonthlyPay = avgRate * tempTotalLoan <span class="comment">// 平均每月付金額</span></span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; item.<span class="property">monthCount</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> interest = tempTotalLoan * rateForMonth <span class="comment">// 利息</span></span><br><span class="line">            totalInterest += interest</span><br><span class="line">            <span class="keyword">var</span> principal = avgMonthlyPay - interest <span class="comment">// 本金</span></span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;本金&#x27;</span>, principal)</span><br><span class="line">            tempTotalLoan = tempTotalLoan - principal</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;餘額&#x27;</span>, tempTotalLoan)</span><br><span class="line">          &#125;</span><br><span class="line">          totalMonth -= <span class="number">12</span></span><br><span class="line">          item.<span class="property">resultMessage</span> = <span class="string">`第<span class="subst">$&#123;item.id&#125;</span>年每月貸款償還金額：<span class="subst">$&#123;avgMonthlyPay&#125;</span>`</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
 
-<p>  送出後我們可以得到GAS回傳的資料如下圖所示，在回傳的資料中我們可以看到postData中的contents夾帶我們剛剛傳送的資料，透過這個方法我們就可以了解，我們實際傳到GAS中的資料到底是長怎樣，這樣有助於我們後續的開法與偵錯。</p>
-<p><img src="/image/IT/20210522/2.jpg"></p>
-<h1 id="撰寫程式"><a href="#撰寫程式" class="headerlink" title="撰寫程式"></a>撰寫程式</h1><h2 id="串寫儲存資料到Google試算表方法"><a href="#串寫儲存資料到Google試算表方法" class="headerlink" title="串寫儲存資料到Google試算表方法"></a>串寫儲存資料到Google試算表方法</h2><p>介紹完上述API接收資料的基本使用方法後，接下來回到今天的正題，如何將資料寫入Google試算表中，不廢話直接上程式碼:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _sheetId=<span class="string">&#x27;你的Google Sheet id&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> _gid=<span class="string">&#x27;活頁簿id&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 接收POST API接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">doPost</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> response =<span class="literal">null</span>; <span class="comment">//建立回應物件</span></span><br><span class="line">    <span class="keyword">var</span> data = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(e.<span class="property">postData</span>.<span class="property">contents</span>) <span class="comment">//將傳入的資料由json字串轉為物件</span></span><br><span class="line">    <span class="keyword">if</span>(data.<span class="property">method</span> ==<span class="string">&#x27;addUser&#x27;</span>)&#123; <span class="comment">//判別方法 -&gt;如果是addUser則進行資料新增</span></span><br><span class="line">        response = <span class="title function_">addUser</span>(data)</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      response=&#123;<span class="string">&#x27;message&#x27;</span>:<span class="string">&#x27;查無方法&#x27;</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">ContentService</span>.<span class="title function_">createTextOutput</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(response))</span><br><span class="line">                         .<span class="title function_">setMimeType</span>(<span class="title class_">ContentService</span>.<span class="property">MimeType</span>.<span class="property">JSON</span>); <span class="comment">//將文字轉為JSON格式</span></span><br><span class="line">  &#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">ContentService</span>.<span class="title function_">createTextOutput</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(err))</span><br><span class="line">                         .<span class="title function_">setMimeType</span>(<span class="title class_">ContentService</span>.<span class="property">MimeType</span>.<span class="property">JSON</span>); <span class="comment">//將文字轉為JSON格式</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 增加角色方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">addUser</span>(<span class="params">data</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> sheet =<span class="title class_">SpreadsheetApp</span>.<span class="title function_">openById</span>(_sheetId)</span><br><span class="line">  <span class="keyword">var</span> googleSheet = <span class="title function_">getSheetByGid</span>(sheet ,_gid)</span><br><span class="line">  data.<span class="property">data</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">x</span>=&gt;</span>&#123;</span><br><span class="line">    googleSheet.<span class="title function_">appendRow</span>([</span><br><span class="line">      <span class="title class_">ReadMaxId</span>(googleSheet)+<span class="number">1</span>,</span><br><span class="line">      x.<span class="property">Name</span>,</span><br><span class="line">      x.<span class="property">Class</span></span><br><span class="line">  ])</span><br><span class="line"> &#125;)</span><br><span class="line">  <span class="keyword">return</span> &#123;<span class="string">&#x27;message&#x27;</span>:<span class="string">&#x27;儲存成功&#x27;</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 取得試算表物件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getSheetByGid</span>(<span class="params">spreadsheet, gid</span>)&#123;</span><br><span class="line">    gid = +gid || <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> res_ = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">var</span> sheets_ = spreadsheet.<span class="title function_">getSheets</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = sheets_.<span class="property">length</span>; i--; )&#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(sheets_[i].<span class="title function_">getSheetId</span>() );</span><br><span class="line">        <span class="keyword">if</span>(sheets_[i].<span class="title function_">getSheetId</span>() === gid)&#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(sheets_[i].<span class="title function_">getSheetId</span>());</span><br><span class="line">            res_ = sheets_[i];</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res_.<span class="title function_">getSheetId</span>());</span><br><span class="line">    <span class="keyword">return</span> res_;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 取得該試算表最左邊欄位最新值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">ReadMaxId</span>(<span class="params">googleSheet</span>)&#123;</span><br><span class="line"><span class="keyword">var</span> allData = googleSheet.<span class="title function_">getSheetValues</span>( googleSheet.<span class="title function_">getLastRow</span>(), <span class="number">1</span>, googleSheet.<span class="title function_">getLastRow</span>(), <span class="number">1</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(allData[<span class="number">0</span>][<span class="number">0</span>]) ;</span><br><span class="line">  <span class="keyword">return</span> allData[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>上述程式碼中的「_gid」是Google試算表中每個不同試算表的唯一編號，如下圖所示。如果我想將資料儲存至另外的活頁簿中，我就必須將Google幫我們預設的0改為新的「gid」編號。</p>
-<ul>
-<li><p>原先預設的編號(gid)<br><img src="/image/IT/20210522/3.jpg"></p>
-</li>
-<li><p>新增活頁簿後，Google會產生新的gid<br><img src="/image/IT/20210522/4.jpg"></p>
-</li>
-</ul>
-<p>ReadMaxId 則是為了建立流水號而使用的一個小方法，取得A欄最下方的資料，也就是最大值的概念，取到目前最大數值後再進行加總，這樣就可以完成建立流水號的功能了，接下來讓我們再回到POST-MAN進行實作的部分。</p>
-<h1 id="最後驗收"><a href="#最後驗收" class="headerlink" title="最後驗收"></a>最後驗收</h1><p>回到POST-MAN上，我們修改掉最後部屬的網址後，就可以大力地按下送出，如果不出意外的話，我們可以得到下面的訊息:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;儲存成功&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/image/IT/20210522/5.jpg"></p>
-<p>我們再回到Google試算表中，我們就可以看到剛剛送出的資料，已經乖乖地躺在試算表中了。<br><img src="/image/IT/20210522/6.jpg"></p>
-<p>有人會問透過Google試算表收集API的好處是啥，我自己架資料庫它不香嗎?我大致總結了下列三點：</p>
-<ol>
-<li><p>不必處理硬體與網路問題</p>
-<p> 當我們可能練習寫一些簡單的網頁或是應用程式時，我們可以用極短的時間完成基本的資料CRUD功能，而且完全不避考慮內網外網還是IP或是DNS等等，聽都沒聽過的問題。</p>
-</li>
-<li><p>提高使用者(<del>a.k.a problen maker</del>)的使用彈性</p>
-<p> 由於資料是儲存在Google試算表中，這樣使用者就不用透過網頁查看統計報表，只要將試算表權限開放給想要查詢的人員即可。<del>(就不用使用者和開發人員來來回回的鬼打牆了…)</del></p>
-</li>
-<li><p>不受環境影響</p>
-<p> 程式開發時的開發環境將會嚴重影響開發進度，但都集中於Google上面的話，我們只要確保瀏覽器可以正常運行的話，不論是Mac還是Windows甚至是iPad都可以愉快地玩耍，何樂不為?</p>
-</li>
-</ol>
-<p>打完收工~感謝你看到最後!</p>
+<h1 id="有還本寬限期試算"><a href="#有還本寬限期試算" class="headerlink" title="有還本寬限期試算"></a>有還本寬限期試算</h1><p><img src="/image/IT/20220501/3.jpeg"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">loan_repay</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> year = <span class="number">20</span> <span class="comment">// 貸款年份</span></span><br><span class="line">    <span class="keyword">let</span> delayYear = <span class="number">3</span> <span class="comment">// 寬限年份</span></span><br><span class="line">    <span class="keyword">let</span> rate = <span class="number">0.02</span> <span class="comment">// 利率2%</span></span><br><span class="line">    <span class="keyword">let</span> totalLoan = <span class="number">8000000</span> <span class="comment">// 總貸款金額</span></span><br><span class="line">        <span class="keyword">let</span> totalMonth = year * <span class="number">12</span> <span class="comment">//總貸款月份</span></span><br><span class="line">        <span class="keyword">let</span> delayMonth = <span class="variable language_">this</span>.<span class="property">delayYear</span>*<span class="number">12</span> <span class="comment">// 總寬限月份</span></span><br><span class="line">        <span class="keyword">let</span> rateForMonth = rate / <span class="number">12</span> <span class="comment">// 月利率</span></span><br><span class="line">        <span class="keyword">let</span> avgRate = (<span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">1</span> + rateForMonth, (totalMonth-delayMonth)) * rateForMonth) / (<span class="title class_">Math</span>.<span class="title function_">pow</span>((<span class="number">1</span> + rateForMonth),</span><br><span class="line">            totalMonth-delayMonth) - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">let</span> interest = totalLoan * rateForMonth <span class="comment">// 寬限期內利息</span></span><br><span class="line">        <span class="keyword">let</span> delayInterest =  interest</span><br><span class="line">        <span class="keyword">let</span> delayRepaymeny =  avgRate*totalLoan <span class="comment">// 寬限期後本金＋利息</span></span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>以上算法提供大家參考～</p>
 
       
     </div>
@@ -478,7 +445,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/google-app-script/" rel="tag"># google-app-script</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
           
         </div>
       
@@ -491,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/04/26/%E8%BC%95%E9%AC%86%E5%BB%BA%E7%AB%8B%E5%85%8D%E8%B2%BB%E8%B3%87%E6%96%99%E5%BA%AB%E8%88%87RESTful%E6%9C%8D%E5%8B%99/" rel="next" title="輕鬆建立免費資料庫與RESTful-API服務">
-                <i class="fa fa-chevron-left"></i> 輕鬆建立免費資料庫與RESTful-API服務
+              <a href="/2022/03/31/20220331-Notify/" rel="next" title="免費定時執行line(推圖篇)">
+                <i class="fa fa-chevron-left"></i> 免費定時執行line(推圖篇)
               </a>
             
           </div>
@@ -500,10 +467,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/10/16/%E6%9B%B4%E6%96%B0zero-ssl%E6%86%91%E8%AD%89%E6%96%BCIIS%E5%B9%B3%E5%8F%B0/" rel="prev" title="更新zero-ssl憑證於IIS平台">
-                更新zero-ssl憑證於IIS平台 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -663,7 +626,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%92%B0%E5%AF%AB%E8%B3%87%E6%96%99%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">撰寫資料接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6POST%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.</span> <span class="nav-text">測試POST接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#POST-MAN-%E8%BB%9F%E9%AB%94"><span class="nav-number">2.1.</span> <span class="nav-text">POST MAN 軟體</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8POST-MAN-%E5%91%BC%E5%8F%AB-doPost"><span class="nav-number">2.2.</span> <span class="nav-text">使用POST MAN 呼叫 doPost</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%92%B0%E5%AF%AB%E7%A8%8B%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">撰寫程式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B2%E5%AF%AB%E5%84%B2%E5%AD%98%E8%B3%87%E6%96%99%E5%88%B0Google%E8%A9%A6%E7%AE%97%E8%A1%A8%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">串寫儲存資料到Google試算表方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%BE%8C%E9%A9%97%E6%94%B6"><span class="nav-number">4.</span> <span class="nav-text">最後驗收</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E6%81%AF%E5%B9%B3%E5%9D%87%E6%94%A4%E9%82%84%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">本息平均攤還法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E9%9A%8E%E6%AE%B5%E8%AA%BF%E6%81%AF%E6%9C%88%E4%BB%98"><span class="nav-number">2.</span> <span class="nav-text">三階段調息月付</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%89%E9%82%84%E6%9C%AC%E5%AF%AC%E9%99%90%E6%9C%9F%E8%A9%A6%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">有還本寬限期試算</span></a></li></ol></div>
             
 
           </div>
